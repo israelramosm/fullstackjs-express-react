@@ -1,12 +1,26 @@
 import express from "express";
+import path from "path";
 
-const _app = express();
-const _port = "8081";
+const app = express(),
+    port = "8081",
+    DIST_DIR = __dirname,
+    HTML_FILE = path.join(DIST_DIR, 'index.html')
 
-_app.use("/", (req, res) => {
+app.use(express.static(DIST_DIR))
+
+app.get('*', (req, res) => {
+    res.sendFile(HTML_FILE)
+})
+
+app.use("/", (req, res) => {
     res.json("{}");
 })
 
-_app.listen(_port, () => {
-    console.log(`[SERVER] Listen on ${_port}`)
+app.use("/json", (req, res) => {
+    res.json("{}");
+})
+
+
+app.listen(port, () => {
+    console.log(`[SERVER] Listen on ${port}`)
 })
