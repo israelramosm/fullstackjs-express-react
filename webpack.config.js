@@ -2,11 +2,11 @@ const path = require('path');
 const webpack = require('webpack');
 const nodeExternals = require('webpack-node-externals');
 const HtmlWebPackPlugin = require("html-webpack-plugin");
-const CopyPlugin = require('copy-webpack-plugin');
+const CopyWebpackPlugin = require("copy-webpack-plugin");
 
 module.exports = {
   entry: {
-    server: './src/server/server.js',
+    server: './server/server.js',
   },
   output: {
     path: path.join(__dirname, 'dist'),
@@ -41,9 +41,14 @@ module.exports = {
   },
   plugins: [
     new HtmlWebPackPlugin({
-      template: "./src/client/index.html",
-      filename: "./index.html",
+      template: "./public/index.html",
+      filename: "./public/index.html",
       excludeChunks: [ 'server' ]
-    })
+    }),
+    new CopyWebpackPlugin([
+      { from: "./public/styles/**/*", to: "./" },
+      { from: "./public/manifest.json", to: "./" },
+      { from: "./public/favicon.ico", to: "./public" }
+    ]),
   ]
 }
