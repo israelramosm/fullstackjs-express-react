@@ -6,21 +6,15 @@ const CopyWebpackPlugin = require("copy-webpack-plugin");
 
 module.exports = {
   entry: {
-    server: './server/server.js',
+    server: './client/index.js',
   },
   output: {
     path: path.join(__dirname, 'dist'),
-    publicPath: '/',
+    publicPath: './',
     filename: '[name].js'
   },
-  target: 'node',
-  node: {
-    // Need this when working with express, otherwise the build fails
-    __dirname: false,   // if you don't put this is, __dirname
-    __filename: false,  // and __filename return blank or /
-  },
-  // Need this to avoid error when working with Express
-  externals: [nodeExternals()],
+  target: 'web',
+  devtool: '#source-map',
   module: {
     rules: [
       {
@@ -35,7 +29,18 @@ module.exports = {
         // Loads the javacript into html template provided.
         // Entry point is set below in HtmlWebPackPlugin in Plugins 
         test: /\.html$/,
-        use: [{loader: "html-loader"}]
+        use: [
+          {loader: "html-loader"},
+          //options: { minimize: true }
+        ]
+      },
+      {
+        test: /\.css$/,
+        use: [ 'style-loader', 'css-loader' ]
+      },
+      {
+       test: /\.(png|svg|jpg|gif)$/,
+       use: ['file-loader']
       }
     ]
   },
@@ -47,7 +52,7 @@ module.exports = {
     }),
     new CopyWebpackPlugin([
       { from: "./public/styles/**/*", to: "./" },
-      { from: "./public/manifest.json", to: "./" },
+      { from: "./public/manifest.json", to: "./public" },
       { from: "./public/favicon.ico", to: "./public" }
     ]),
   ]
