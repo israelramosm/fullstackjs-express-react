@@ -9,7 +9,7 @@ const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 
 module.exports = {
   entry: {
-    app: './app/index.js',
+    index: './app/index.js',
   },
   output: {
     path: path.join(__dirname, 'dist/public/'),
