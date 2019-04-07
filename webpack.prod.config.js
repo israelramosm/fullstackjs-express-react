@@ -3,10 +3,13 @@ const webpack = require('webpack');
 const nodeExternals = require('webpack-node-externals');
 const HtmlWebPackPlugin = require("html-webpack-plugin");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin")
+const UglifyJsPlugin = require("uglifyjs-webpack-plugin")
+const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 
 module.exports = {
   entry: {
-    server: './client/index.js',
+    server: './app/index.js',
   },
   output: {
     path: path.join(__dirname, 'dist'),
@@ -15,6 +18,16 @@ module.exports = {
   },
   target: 'web',
   devtool: '#source-map',
+  optimization: {
+    minimizer: [
+      new UglifyJsPlugin({
+        cache: true,
+        parallel: true,
+        sourceMap: true // set to true if you want JS source maps
+      }),
+      new OptimizeCSSAssetsPlugin({})
+    ]
+  },
   module: {
     rules: [
       {
@@ -30,18 +43,28 @@ module.exports = {
         // Entry point is set below in HtmlWebPackPlugin in Plugins 
         test: /\.html$/,
         use: [
-          {loader: "html-loader"},
-          //options: { minimize: true }
+          {
+            loader: "html-loader",
+            options: { minimize: true }
+          },
+          
         ]
       },
       {
+        // Loads CSS into a file when you import it via Javascript
+        // Rules are set in MiniCssExtractPlugin
         test: /\.css$/,
-        use: [ 'style-loader', 'css-loader' ]
+        use: [ MiniCssExtractPlugin.loader, 'css-loader' ]
       },
       {
-       test: /\.(png|svg|jpg|gif)$/,
-       use: ['file-loader']
-      }
+        // Loads images into CSS and Javascript files
+        test: /\.(png|svg|jpg|gif)$/,
+        use: [{loader: "url-loader"}]
+      },
+      // {
+      //  test: /\.(png|svg|jpg|gif)$/,
+      //  use: ['file-loader']
+      // }
     ]
   },
   plugins: [
@@ -55,5 +78,9 @@ module.exports = {
       { from: "./public/manifest.json", to: "./public" },
       { from: "./public/favicon.ico", to: "./public" }
     ]),
+    new MiniCssExtractPlugin({
+      filename: "[name].css",
+      chunkFilename: "[id].css"
+    })
   ]
 }
