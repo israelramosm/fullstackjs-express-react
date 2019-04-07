@@ -9,10 +9,10 @@ const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 
 module.exports = {
   entry: {
-    server: './app/index.js',
+    app: './app/index.js',
   },
   output: {
-    path: path.join(__dirname, 'dist'),
+    path: path.join(__dirname, 'dist/public/'),
     publicPath: './',
     filename: '[name].js'
   },
@@ -70,13 +70,14 @@ module.exports = {
   plugins: [
     new HtmlWebPackPlugin({
       template: "./public/index.html",
-      filename: "./public/index.html",
+      filename: "./index.html",
       excludeChunks: [ 'server' ]
     }),
     new CopyWebpackPlugin([
-      { from: "./public/styles/**/*", to: "./" },
-      { from: "./public/manifest.json", to: "./public" },
-      { from: "./public/favicon.ico", to: "./public" }
+      // Don't know why with out ../ copys public/public in dist/
+      { from: "./public/styles/**/*", to: "../" },
+      { from: "./public/manifest.json", to: "./" },
+      { from: "./public/favicon.ico", to: "./" }
     ]),
     new MiniCssExtractPlugin({
       filename: "[name].css",

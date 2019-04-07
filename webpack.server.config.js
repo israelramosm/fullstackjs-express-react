@@ -9,7 +9,7 @@ module.exports = (env, argv) => {
  
   return ({
     entry: {
-      server:SERVER_PATH,
+      server: SERVER_PATH,
     },
     output: {
       path: path.join(__dirname, 'dist'),
