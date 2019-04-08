@@ -1,6 +1,5 @@
 import express from "express";
 import path from "path";
-import log from "./logger";
 
 const app = express(),
     port = "8081",
@@ -10,7 +9,6 @@ const app = express(),
 app.use(express.static(DIST_DIR))
 
 app.get('*', (req, res) => {
-    log("index.html");
     res.sendFile(HTML_FILE)
 })
 

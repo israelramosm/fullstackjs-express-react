@@ -6,11 +6,14 @@ const CopyWebpackPlugin = require("copy-webpack-plugin");
 
 module.exports = {
   entry: {
-    index: './app/index.js',
+    index: [
+      'webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000',
+      './app/index.js'
+    ],
   },
   output: {
-    path: path.join(__dirname, 'dist/public/'),
-    publicPath: './',
+    path: path.join(__dirname, 'dist/public'),
+    publicPath: '/',
     filename: '[name].js'
   },
   target: 'web',
@@ -61,6 +64,7 @@ module.exports = {
       { from: "./public/manifest.json", to: "./" },
       { from: "./public/favicon.ico", to: "./" }
     ]),
+    new webpack.HotModuleReplacementPlugin(),
     new webpack.NoEmitOnErrorsPlugin()
   ]
 }

@@ -12,8 +12,8 @@ module.exports = {
     index: './app/index.js',
   },
   output: {
-    path: path.join(__dirname, 'dist/public/'),
-    publicPath: './',
+    path: path.join(__dirname, 'dist/public'),
+    publicPath: '/',
     filename: '[name].js'
   },
   target: 'web',
