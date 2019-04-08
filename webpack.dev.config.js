@@ -15,6 +15,7 @@ module.exports = {
   },
   target: 'web',
   devtool: '#source-map',
+  mode: 'development',
   module: {
     rules: [
       {
@@ -60,5 +61,6 @@ module.exports = {
       { from: "./public/manifest.json", to: "./" },
       { from: "./public/favicon.ico", to: "./" }
     ]),
+    new webpack.NoEmitOnErrorsPlugin()
   ]
 }

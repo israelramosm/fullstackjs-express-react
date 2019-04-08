@@ -13,7 +13,7 @@ module.exports = (env, argv) => {
     },
     output: {
       path: path.join(__dirname, 'dist'),
-      publicPath: './',
+      publicPath: './public',
       filename: '[name].js'
     },
     target: 'node',

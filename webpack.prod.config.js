@@ -18,6 +18,7 @@ module.exports = {
   },
   target: 'web',
   devtool: '#source-map',
+  mode: 'production',
   optimization: {
     minimizer: [
       new UglifyJsPlugin({
