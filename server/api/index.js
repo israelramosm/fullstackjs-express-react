@@ -1,4 +1,4 @@
-import * as productResource from './products.resource';
+import * as testController from './test.controller';
 
 export default (app, base) => {
     app.use('/api', base);
@@ -10,11 +10,11 @@ export default (app, base) => {
         res.status(200).send(data);
     });
 
-    base.route('/products')
-    .get(productResource.getProducts)
-    base.route('/products/:productId')
-    .get(productResource.getProduct)
-    .post(productResource.postProduct)
-    .put(productResource.putProduct)
-    .delete(productResource.deleteProduct);
+    base.route('/tests')
+    .get(testController.getTests)
+    base.route('/tests/:testId')
+    .get(testController.getTest)
+    .post(testController.postTest)
+    .put(testController.putTest)
+    .delete(testController.deleteTest);
 }

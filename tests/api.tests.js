@@ -1,7 +1,7 @@
 import adder from "./adder";
 
-describe('Adder', () => {
-    test('adds two numbers', () => {
+describe('API tests', () => {
+    test('GET', () => {
         expect(adder(5, 3)).toEqual(8);
     })
 });
