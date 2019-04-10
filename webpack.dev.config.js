@@ -8,7 +8,7 @@ module.exports = {
   entry: {
     index: [
       'webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000',
-      './client/index.js'
+      './src/client/index.js'
     ],
   },
   output: {
@@ -60,7 +60,7 @@ module.exports = {
     }),
     new CopyWebpackPlugin([
       // Don't know why with out ../ copys public/public in dist/
-      { from: "./public/styles/**/*", to: "../" },
+      { from: "./public/assets/**/*", to: "../" },
       { from: "./public/manifest.json", to: "./" },
       { from: "./public/favicon.ico", to: "./" }
     ]),

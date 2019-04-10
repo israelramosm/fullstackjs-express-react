@@ -9,7 +9,7 @@ const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 
 module.exports = {
   entry: {
-    index: './client/index.js',
+    index: './src/client/index.js',
   },
   output: {
     path: path.join(__dirname, 'dist/public'),
@@ -24,7 +24,7 @@ module.exports = {
       new UglifyJsPlugin({
         cache: true,
         parallel: true,
-        sourceMap: true // set to true if you want JS source maps
+        sourceMap: false // set to true if you want JS source maps
       }),
       new OptimizeCSSAssetsPlugin({})
     ]
@@ -80,7 +80,7 @@ module.exports = {
     }),
     new CopyWebpackPlugin([
       // Don't know why with out ../ copys public/public in dist/
-      { from: "./public/styles/**/*", to: "../" },
+      { from: "./public/assets/**/*", to: "../" },
       { from: "./public/manifest.json", to: "./" },
       { from: "./public/favicon.ico", to: "./" }
     ]),
