@@ -23,7 +23,7 @@ module.exports = {
     rules: [
       {
         // Transpiles ES6-8 into ES5
-        test: /\.js$/,
+        test: /\.(js|jsx)$/,
         exclude: /node_modules/,
         use: {
           loader: "babel-loader"
@@ -51,6 +51,9 @@ module.exports = {
        use: ['file-loader']
       }
     ]
+  },
+  resolve: {
+    extensions: ['*', '.js', '.jsx'],
   },
   plugins: [
     new HtmlWebPackPlugin({
