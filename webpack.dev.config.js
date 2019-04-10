@@ -8,7 +8,7 @@ module.exports = {
   entry: {
     index: [
       'webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000',
-      './app/index.js'
+      './client/index.js'
     ],
   },
   output: {
