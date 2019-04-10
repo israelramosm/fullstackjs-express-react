@@ -2,7 +2,7 @@ import express from 'express';
 import moxios from 'moxios';
 import request from 'supertest';
 
-import apiRoutes from '../../server/api/index';
+import apiRoutes from '../../src/server/api/index';
 
 const initApp = () => {
     const app = express(),
