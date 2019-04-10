@@ -8,7 +8,7 @@ module.exports = {
   entry: {
     index: [
       'webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000',
-      './src/client/index.js'
+      './src/client/index.jsx'
     ],
   },
   output: {
@@ -22,11 +22,18 @@ module.exports = {
   module: {
     rules: [
       {
-        // Transpiles ES6-8 into ES5
-        test: /\.(js|jsx)$/,
+        // Transpiles ES6-8 into ES5 for React App
+        test: /\.jsx$/,
         exclude: /node_modules/,
         use: {
-          loader: "babel-loader"
+          loader: "babel-loader",
+          options: {
+            presets: [
+              "@babel/preset-env",
+              "@babel/preset-react"
+            ],
+            plugins: ["@babel/plugin-proposal-class-properties","@babel/plugin-proposal-export-default-from"]
+          }
         }
       },
       {

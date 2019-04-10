@@ -9,7 +9,7 @@ const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 
 module.exports = {
   entry: {
-    index: './src/client/index.js',
+    index: ['./src/client/index.jsx'],
   },
   output: {
     path: path.join(__dirname, 'dist/public'),
@@ -24,7 +24,7 @@ module.exports = {
       new UglifyJsPlugin({
         cache: true,
         parallel: true,
-        sourceMap: false // set to true if you want JS source maps
+        sourceMap: false, // set to true if you want JS source maps
       }),
       new OptimizeCSSAssetsPlugin({})
     ]
@@ -32,11 +32,18 @@ module.exports = {
   module: {
     rules: [
       {
-        // Transpiles ES6-8 into ES5
-        test: /\.(js|jsx)$/,
+        // Transpiles ES6-8 into ES5 for React App
+        test: /\.jsx$/,
         exclude: /node_modules/,
         use: {
-          loader: "babel-loader"
+          loader: "babel-loader",
+          options: {
+            presets: [
+              "@babel/preset-env",
+              "@babel/preset-react"
+            ],
+            plugins: ["@babel/plugin-proposal-class-properties","@babel/plugin-proposal-export-default-from"]
+          }
         }
       },
       {
