@@ -8,7 +8,9 @@
     "coverage": "jest --coverage",
     "build:dev": "rm -rf dist && webpack --mode development --config webpack.server.config.js && webpack --mode development --config webpack.dev.config.js",
     "build:prod": "rm -rf dist && webpack --mode production --config webpack.server.config.js && webpack --mode production --config webpack.prod.config.js",
-    "start": "node ./dist/server.js"
+    "start": "node ./dist/server.js",
+    "standardx": "standardx",
+    "standardx:fix": "standardx --fix"
   },
   "jest": {
     "moduleNameMapper": {
@@ -52,6 +54,7 @@
     "node-sass": "^4.11.0",
     "optimize-css-assets-webpack-plugin": "^5.0.1",
     "sass-loader": "^7.1.0",
+    "standardx": "^3.0.1",
     "style-loader": "^0.23.1",
     "supertest": "^4.0.2",
     "uglifyjs-webpack-plugin": "^2.1.2",
