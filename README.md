@@ -77,7 +77,10 @@ If it's not configure with this the unglify plugin for the production build in w
         }
     },
 ```
+### esLint
 
+I'am using [standardx](https://github.com/standard/standardx) based on the [standard](https://github.com/standard/standard) project
 
-Based on: https://medium.com/@binyamin/creating-a-node-express-webpack-app-with-dev-and-prod-builds-a4962ce51334
+## References
+[Creating a Node Express-Webpack App with Dev and Prod Builds](https://medium.com/@binyamin/creating-a-node-express-webpack-app-with-dev-and-prod-builds-a4962ce51334)
 
