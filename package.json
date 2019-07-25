@@ -6,6 +6,7 @@
   "scripts": {
     "test": "jest",
     "clean": "rimraf dist",
+    "db": "mongod --auth --dbpath \"C:\\mongodbs\\expresjs-react\"",
     "coverage": "jest --coverage",
     "build:dev": "npm run clean && webpack --mode development --config webpack.server.config.js && webpack --mode development --config webpack.dev.config.js",
     "build:prod": "npm run clean && webpack --mode production --config webpack.server.config.js && webpack --mode production --config webpack.prod.config.js",

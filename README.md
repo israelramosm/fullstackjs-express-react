@@ -8,32 +8,33 @@ An express react template with tests to learn more about Javascript.
 To run the application first install all the dependencies
 
 ```sh
-npm install
+$ npm install
+```
+
+* Start the db, I recommend to check the mongo configuration
+
+```sh
+$ npm run db
 ```
 
 * For development mode
 
 ```sh
-npm run build:dev
+$ npm run build:dev
 ```
 
 * or for production mode
 
 ```sh
-npm run build:prod
+$ npm run build:prod
+$ npm run start
 ```
 
-* and then 
+To run the test or coverage, the test can be run without mongo installed on the machine
 
 ```sh
-npm run start
-```
-
-To run the test or coverage
-
-```sh
-npm run tests
-npm run coverage
+$ npm run tests
+$ npm run coverage
 ```
 
 ## Configuration
@@ -53,6 +54,29 @@ Needs `target` and `node` in `.babelrc` file to run async await functions inside
         ]
     ]
 }
+```
+
+### Mongo
+Quick configuration to use mongod with authentication
+
+```shell
+$ mongod --dbpath "C:\dbpath"
+```
+
+In another console
+
+```shell
+
+$ mongod
+> use admin
+> db.createUser({user: 'username', pwd:'password', roles:[{role:'userAdminAnyDatabase',db: 'admin'}]})
+> db.createUser({user: 'username', pwd:'password', roles:[{role:'readWrite',db: '<dbname>'}]})
+```
+
+Then we can restart the process of mongod using auth
+
+```shell
+$ mongod --auth --dbpath "C:\dbpath"
 ```
 
 ### React
