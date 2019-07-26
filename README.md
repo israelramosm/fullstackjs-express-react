@@ -70,6 +70,7 @@ In another console
 $ mongod
 > use admin
 > db.createUser({user: 'username', pwd:'password', roles:[{role:'userAdminAnyDatabase',db: 'admin'}]})
+> use <dbname>
 > db.createUser({user: 'username', pwd:'password', roles:[{role:'readWrite',db: '<dbname>'}]})
 ```
 
