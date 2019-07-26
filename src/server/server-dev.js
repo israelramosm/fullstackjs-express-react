@@ -17,8 +17,6 @@ export default app => {
 
   app.use(webpackHotMiddleware(compiler))
 
-  app.use(express.static(DIST_DIR))
-
   // TODO: It's realy necesary this code?
   // app.get('*', (req, res, next) => {
   //     compiler.outputFileSystem.readFile(HTML_FILE, (err, result) => {

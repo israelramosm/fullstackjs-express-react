@@ -35,9 +35,7 @@ connect(DB_URI, { useNewUrlParser: true })
 app.use(express.static(DIST_DIR))
 
 // Setting up development configuration
-if (!PROD_MODE) {
-  devApp(app)
-}
+if (!PROD_MODE) devApp(app)
 
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
