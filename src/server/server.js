@@ -7,7 +7,6 @@ import dotenv from 'dotenv'
 // import mongo from "connect-mongo"
 import {connect} from "mongoose"
 
-
 import devApp from './server-dev'
 import apiRoutes from './api'
 
@@ -18,7 +17,6 @@ const {NODE_ENV, PORT, DB, DB_HOST, DB_NAME, DB_USER, DB_PASS} = process.env
 // mongodb://expressjs:password@localhost/expressdb
 const DB_URI = `${DB}${DB_USER}:${DB_PASS}@${DB_HOST}${DB_NAME}`
 
-const BASE = express.Router()
 const PROD_MODE = NODE_ENV === 'production'
 const DIST_DIR = path.join(__dirname, '/public')
 const HTML_FILE = path.join(DIST_DIR, './public/index.html')
@@ -41,7 +39,7 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
 
 /* API */
-apiRoutes(app, BASE)
+apiRoutes(app)
 
 // needs to be after the api routes
 app.get('*', (req, res) => {

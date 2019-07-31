@@ -4,6 +4,9 @@ import request from 'supertest'
 
 import apiRoutes from '../../src/server/api/index'
 
+const BASE_URL = '/api'
+const URL = `${BASE_URL}/tests`
+
 const initApp = () => {
   const app = express()
   const base = express.Router()
@@ -12,8 +15,7 @@ const initApp = () => {
 
   return app
 }
-const BASE_URL = '/api'
-const URL = `${BASE_URL}/tests`
+
 
 describe('API tests', () => {
   beforeEach(() => {
@@ -29,7 +31,7 @@ describe('API tests', () => {
 
     const res = await request(app).get(BASE_URL)
 
-    expect(res.body.message).toEqual('Hello World!')
+    expect(res.body.message).toEqual('Hello /api!')
     done()
   })
 
