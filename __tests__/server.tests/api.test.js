@@ -2,22 +2,13 @@ import express from 'express'
 import moxios from 'moxios'
 import request from 'supertest'
 
-import apiRoutes from '../../src/server/api/index'
+import initApp from '../../__mocks__/mockapp'
+import { base } from '../../src/server/api/index'
 
 const BASE_URL = '/api'
 const URL = `${BASE_URL}/tests`
 
-const initApp = () => {
-  const app = express()
-  const base = express.Router()
-
-  apiRoutes(app, base)
-
-  return app
-}
-
-
-describe('API tests', () => {
+describe('API base tests', () => {
   beforeEach(() => {
     moxios.install()
   })
@@ -27,7 +18,7 @@ describe('API tests', () => {
   })
 
   test('GET /api', async(done) => {
-    const app = initApp()
+    const app = initApp(base, BASE_URL)
 
     const res = await request(app).get(BASE_URL)
 
@@ -36,7 +27,7 @@ describe('API tests', () => {
   })
 
   test('GET /api/tests', async(done) => {
-    const app = initApp()
+    const app = initApp(base, BASE_URL)
 
     const res = await request(app).get(URL)
 
@@ -45,7 +36,7 @@ describe('API tests', () => {
   })
 
   test('GET /api/tests/:testId', async(done) => {
-    const app = initApp()
+    const app = initApp(base, BASE_URL)
 
     const res = await request(app).get(`${URL}/123`)
 
@@ -54,7 +45,7 @@ describe('API tests', () => {
   })
 
   test('POST /api/tests:testId', async(done) => {
-    const app = initApp()
+    const app = initApp(base, BASE_URL)
 
     const res = await request(app).post(`${URL}/123`)
 
@@ -63,7 +54,7 @@ describe('API tests', () => {
   })
 
   test('PUT /api/tests:testId', async(done) => {
-    const app = initApp()
+    const app = initApp(base, BASE_URL)
 
     const res = await request(app).put(`${URL}/123`)
 
@@ -72,7 +63,7 @@ describe('API tests', () => {
   })
 
   test('PUT /api/tests:testId', async(done) => {
-    const app = initApp()
+    const app = initApp(base, BASE_URL)
 
     const res = await request(app).delete(`${URL}/123`)
 
