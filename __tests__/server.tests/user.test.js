@@ -1,66 +1,42 @@
 import moxios from 'moxios'
 import request from 'supertest'
 
+import initServer from '../../__mocks__/mockapp'
+import { base } from '../../src/server/routes/index'
+
+const BASE_URL = '/api'
+
 describe('User Auth tests', () => {
+  let server
+
   beforeEach(() => {
     moxios.install()
+    server = initServer(base, BASE_URL)
   })
 
   afterEach(() => {
     moxios.uninstall()
   })
 
-  test('GET /api', async(done) => {
-    const app = initApp()
+  test('POST /api/login', async(done) => {
+    const res = await request(server).post(`${BASE_URL}/login`)
 
-    const res = await request(app).get(BASE_URL)
-
-    expect(res.body.message).toEqual('Hello /api!')
+    expect(res.body.message).toEqual('Sucess! You are login.')
     done()
   })
 
-  test('GET /api/tests', async(done) => {
-    const app = initApp()
+  test('POST /api/signup', async(done) => {
+    const res = await request(server).post(`${BASE_URL}/signup`)
 
-    const res = await request(app).get(URL)
-
-    expect(res.body.message).toEqual('GET /api/tests')
+    expect(res.body.message).toEqual('Sucess! You are signup.')
     done()
   })
 
-  test('GET /api/tests/:testId', async(done) => {
-    const app = initApp()
+  test('GET /api/logout', async(done) => {
+    const res = await request(server).get(`${BASE_URL}/logout`)
 
-    const res = await request(app).get(`${URL}/123`)
-
-    expect(res.body.message).toEqual('GET /api/test')
+    expect(res.body.message).toEqual('Sucess! You are logout.')
     done()
   })
 
-  test('POST /api/tests:testId', async(done) => {
-    const app = initApp()
-
-    const res = await request(app).post(`${URL}/123`)
-
-    expect(res.body.message).toEqual('POST /api/test')
-    done()
-  })
-
-  test('PUT /api/tests:testId', async(done) => {
-    const app = initApp()
-
-    const res = await request(app).put(`${URL}/123`)
-
-    expect(res.body.message).toEqual('PUT /api/test')
-    done()
-  })
-
-  test('PUT /api/tests:testId', async(done) => {
-    const app = initApp()
-
-    const res = await request(app).delete(`${URL}/123`)
-
-    expect(res.body.message).toEqual('DELETE /api/test')
-    done()
-  })
 })
