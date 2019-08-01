@@ -1,6 +1,7 @@
 import express from 'express';
 
-import * as testController from './test.controller'
+import * as testC from '../controllers/test.controller'
+import * as userC from '../controllers/user.controller'
 
 const BASE_ROUTE = express.Router()
 const V1_ROUTE = express.Router()
@@ -20,13 +21,19 @@ export const base = (app, url, rBase) => {
     res.status(200).send(data)
   })
 
+  // test route /api
   rBase.route('/tests')
-    .get(testController.getTests)
-    rBase.route('/tests/:testId')
-    .get(testController.getTest)
-    .post(testController.postTest)
-    .put(testController.putTest)
-    .delete(testController.deleteTest)
+    .get(testC.getTests)
+  rBase.route('/tests/:testId')
+    .get(testC.getTest)
+    .post(testC.postTest)
+    .put(testC.putTest)
+    .delete(testC.deleteTest)
+
+  // User route /api
+  rBase.route('/login').post(userC.postLogin)
+  rBase.route('/signup').post(userC.postSignup)
+  rBase.route('/logout').get(userC.getLogout)
 }
 
 export const v1 = (app, url, rV1) => {
@@ -39,11 +46,12 @@ export const v1 = (app, url, rV1) => {
     res.status(200).send(data)
   })
 
+  // test route /api/v1
   rV1.route('/tests')
-    .get(testController.getTests)
+    .get(testC.getTests)
   rV1.route('/tests/:testId')
-    .get(testController.getTest)
-    .post(testController.postTest)
-    .put(testController.putTest)
-    .delete(testController.deleteTest)
+    .get(testC.getTest)
+    .post(testC.postTest)
+    .put(testC.putTest)
+    .delete(testC.deleteTest)
 }

@@ -1,6 +1,6 @@
 import express from 'express'
 
-const initApp =  (apiFunc, base_url) => {
+const initServer =  (apiFunc, base_url) => {
   const app = express()
   const route = express.Router()
 
@@ -9,4 +9,4 @@ const initApp =  (apiFunc, base_url) => {
   return app
 }
 
-export default initApp
+export default initServer
