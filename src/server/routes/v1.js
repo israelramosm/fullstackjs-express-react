@@ -6,7 +6,7 @@ import * as testC from '../controllers/test.controller'
  * @param {*} url 
  * @param {*} rV1 
  */
-export const v1 = (app, url, rV1) => {
+const v1 = (app, url, rV1) => {
     app.use(url, rV1)
   
     app.get(url, (req, res) => {
@@ -25,3 +25,5 @@ export const v1 = (app, url, rV1) => {
       .put(testC.putTest)
       .delete(testC.deleteTest)
   }
+
+  export default v1;

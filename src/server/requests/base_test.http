@@ -1,3 +1,22 @@
 ### GET base
 http://localhost:8080/api
 
+### GET api/tests
+http://localhost:8080/api/tests
+
+### POST api/tests
+curl -X POST http://localhost:8080/api/tests/123
+-H 'Content-Type: application/json'
+-d ' {} '
+
+
+
+
+
+
+
+### GET api/tests
+http://localhost:8080/api/tests
+
+### GET api/tests
+http://localhost:8080/api/tests

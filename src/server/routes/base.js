@@ -7,7 +7,7 @@ import * as testC from '../controllers/test.controller'
  * @param {*} url 
  * @param {*} rBase 
  */
-export const base = (app, url, rBase) => {
+const base = (app, url, rBase) => {
     app.use(url, rBase)
   
     app.get(url, (req, res) => {
@@ -31,3 +31,5 @@ export const base = (app, url, rBase) => {
     rBase.route('/signup').post(userC.postSignup)
     rBase.route('/logout').get(userC.getLogout)
   }
+
+  export default base;

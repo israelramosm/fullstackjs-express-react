@@ -16,6 +16,8 @@ export const postTest = (req, res) => {
   let data = {
     message: 'POST /api/test'
   }
+
+  console.log(req);
   res.status(200).send(data)
 }
 

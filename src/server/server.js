@@ -8,7 +8,7 @@ import dotenv from 'dotenv'
 import {connect} from "mongoose"
 
 import devApp from './server-dev'
-import apiRoutes from './api'
+import apiRoutes from './routes'
 
 // importing enviroment variables from .env
 dotenv.config()
