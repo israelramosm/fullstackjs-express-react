@@ -1,3 +1,5 @@
+import User from "../models/userModel"
+
 /**
  * Should login to the application
  * POST /api/login
@@ -18,10 +20,12 @@
    * @param {*} res 
    */
   export const postSignup = (req, res) => {
-    let data = {
-      message: "Sucess! You are signup."
-    }
-    res.status(200).send(data)
+    let newUser = new User(req.body)
+    newUser.save((err, user) => {
+      if(err) res.json(err)
+
+      res.json(user)
+    })
   }
   
   /**
