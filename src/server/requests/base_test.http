@@ -7,16 +7,27 @@ http://localhost:8080/api/tests
 ### POST api/tests
 curl -X POST http://localhost:8080/api/tests/123
 -H 'Content-Type: application/json'
--d ' {} '
+-d '{
+    "name": "test POST",
+    "method": "POST",
+    "description": "sending payload"
+}'
+
+### PUT api/tests
+curl -X PUT http://localhost:8080/api/tests/123
+-H 'Content-Type: application/json'
+-d '{
+    "name": "test",
+    "method": "PUT",
+    "description": "sending payload"
+}'
 
 
-
-
-
-
-
-### GET api/tests
-http://localhost:8080/api/tests
-
-### GET api/tests
-http://localhost:8080/api/tests
+### DELETE api/tests
+curl -X DELETE  http://localhost:8080/api/tests/123
+-H 'Content-Type: application/json'
+-d '{
+    "name": "test",
+    "method": "DELETE",
+    "description": "sending payload"
+}'
