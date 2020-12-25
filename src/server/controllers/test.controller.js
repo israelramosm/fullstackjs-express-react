@@ -14,21 +14,25 @@ export const getTest = (req, res) => {
 
 export const postTest = (req, res) => {
   let data = {
-    message: 'POST /api/test'
+    message: 'POST /api/test',
+    body: req.body
   }
+
   res.status(200).send(data)
 }
 
 export const putTest = (req, res) => {
   let data = {
-    message: 'PUT /api/test'
+    message: 'PUT /api/test',
+    body: req.body
   }
   res.status(200).send(data)
 }
 
 export const deleteTest = (req, res) => {
   let data = {
-    message: 'DELETE /api/test'
+    message: 'DELETE /api/test',
+    body: req.body
   }
   res.status(200).send(data)
 }
