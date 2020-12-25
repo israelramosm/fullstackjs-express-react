@@ -2,24 +2,24 @@ const path = require('path')
 const nodeExternals = require('webpack-node-externals')
 
 module.exports = (env, argv) => {
-  const SERVER_PATH = './src/server/server.js'
+  const SERVER_PATH = "./src/server/server.js";
 
-  return ({
+  return {
     entry: {
-      server: SERVER_PATH
+      server: SERVER_PATH,
     },
     output: {
-      path: path.join(__dirname, 'dist'),
-      publicPath: './public',
-      filename: '[name].js'
+      path: path.join(__dirname, "dist"),
+      publicPath: "./public",
+      filename: "[name].js",
     },
-    target: 'node',
+    target: "node",
     node: {
       // Need this when working with express, otherwise the build fails
       // if you don't put this is, __dirname
       __dirname: false,
       // and __filename return blank or /
-      __filename: false
+      __filename: false,
     },
     // Need this to avoid error when working with Express
     externals: [nodeExternals()],
@@ -30,10 +30,10 @@ module.exports = (env, argv) => {
           test: /\.js$/,
           exclude: /node_modules/,
           use: {
-            loader: 'babel-loader'
-          }
-        }
-      ]
-    }
-  })
-}
+            loader: "babel-loader",
+          },
+        },
+      ],
+    },
+  };
+};

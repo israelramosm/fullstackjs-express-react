@@ -1,4 +1,5 @@
 {
+    "parser": "babel-eslint",
     "rules": {
         "camelcase": 1,
         "space-before-function-paren": ["error", "never" ]
