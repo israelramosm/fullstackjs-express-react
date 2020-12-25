@@ -5,10 +5,10 @@
   "main": "index.js",
   "scripts": {
     "jest:client": "jest --config ./__tests__/client.config.js --passWithNoTests",
-    "jest:node": "jest --config ./__tests__/node.config.js",
+    "jest:node": "jest --config ./__tests__/node.config.js --passWithNoTests",
     "clean": "rimraf dist",
     "db": "mongod --auth --dbpath \"C:\\mongodbs\\expresjs-react\"",
-    "coverage": "jest --coverage",
+    "coverage": "jest --coverage --testRegex __tests__/*.tests/*.test.js",
     "build:dev": "npm run clean && webpack --mode development --config webpack.server.config.js && webpack --mode development --config webpack.dev.config.js",
     "build:prod": "npm run clean && webpack --mode production --config webpack.server.config.js && webpack --mode production --config webpack.prod.config.js",
     "start": "node ./dist/server.js",
