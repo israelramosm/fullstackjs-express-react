@@ -4,7 +4,7 @@
   "description": "A express template to learn more about Javascript",
   "main": "index.js",
   "scripts": {
-    "jest:client": "jest --config ./__tests_/_client.config.js",
+    "jest:client": "jest --config ./__tests__/client.config.js --passWithNoTests",
     "jest:node": "jest --config ./__tests__/node.config.js",
     "clean": "rimraf dist",
     "db": "mongod --auth --dbpath \"C:\\mongodbs\\expresjs-react\"",
