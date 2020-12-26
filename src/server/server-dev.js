@@ -13,7 +13,7 @@ export default (app) => {
 
   app.use(
     webpackDevMiddleware(compiler, {
-      publicPath: config.output.publicPath,
+      publicPath: config.output.path,
     })
   );
 
