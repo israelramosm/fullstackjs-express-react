@@ -16,7 +16,7 @@
     "standardx:fix": "standardx --fix",
     "nodemon": "nodemon --watch dist/server.js --delay 2500ms ./dist/server.js",
     "watch:backEnd": "webpack --watch --mode development --config webpack.server.config.js",
-    "watch:frontend" : "webpack --watch --mode development --config webpack.dev.config.js",
+    "watch:frontend": "webpack --watch --mode development --config webpack.dev.config.js",
     "startAll": "npm-run-all -p nodemon watch:backEnd watch:frontend"
   },
   "repository": {
