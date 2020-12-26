@@ -9,6 +9,7 @@ import { connect } from "mongoose";
 
 import devApp from "./server-dev";
 import apiRoutes from "./routes";
+import { DEBUG, SERVER } from "../util/Constants";
 
 // importing enviroment variables from .env
 dotenv.config();
@@ -21,12 +22,6 @@ const PROD_MODE = NODE_ENV === "production";
 const DIST_DIR = path.join(__dirname, "/public");
 const HTML_FILE = path.join(DIST_DIR, "./index.html");
 const app = express();
-
-console.log(DB_URI);
-// DB Connection
-connect(DB_URI, { useNewUrlParser: true })
-  .then(() => console.log("*** DB connection open"))
-  .catch((error) => console.log(`*** DB Connection Error: ${error}`));
 
 /* Configuration */
 // Static Files
@@ -43,9 +38,17 @@ apiRoutes(app);
 
 // needs to be after the api routes
 app.get("*", (req, res) => {
-  res.sendFile(HTML_FILE);
+  res
+    .status(404)
+    .send({ message: "We couldn't find what you were looking for" });
 });
 
-app.listen(PORT, () => {
-  console.log(`[SERVER] Listen on ${PORT}`);
-});
+// DB Connection
+connect(DB_URI, { useNewUrlParser: true })
+  .then(() => {
+    console.log(SERVER, "DB connection open");
+    app.listen(PORT, () => {
+      console.log(SERVER, `Listen on ${PORT}`);
+    });
+  })
+  .catch((error) => console.error(`*** DB Connection Error: ${error}`));

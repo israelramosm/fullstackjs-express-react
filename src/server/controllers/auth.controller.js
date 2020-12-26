@@ -1,5 +1,17 @@
-import { DEBUG } from "../../util/Constants";
-import User from "../models/userModel";
+import User, { schema } from "../models/userModel";
+import Joi from "@hapi/joi";
+
+const joiSchema = Joi.object({
+  email: Joi.string()
+    .min(schema.email.min)
+    .max(schema.email.max)
+    .required()
+    .email(),
+  password: Joi.string()
+    .min(schema.password.min)
+    .max(schema.password.max)
+    .required(),
+});
 
 /**
  * Should login to the application
@@ -8,6 +20,7 @@ import User from "../models/userModel";
  * @param {*} res
  */
 export const postLogin = (req, res) => {
+  console.log(req.body);
   let data = {
     message: "Sucess! You are login.",
   };
@@ -20,7 +33,14 @@ export const postLogin = (req, res) => {
  * @param {*} req
  * @param {*} res
  */
-export const postSignup = (req, res) => {
+export const postSignup = async (req, res) => {
+  const { error } = joiSchema.validate(req.body);
+  if (error) return res.status(400).json({ error: error.details[0].message });
+
+  const isEMailExist = await User.findOne({ email: req.body.email });
+  if (isEMailExist)
+    return res.status(400).json({ error: "Email already exists" });
+
   let newUser = new User(req.body);
   newUser.save((err, user) => {
     if (err) res.status(500).send(err);

@@ -40,6 +40,7 @@
     "@babel/plugin-proposal-export-default-from": "^7.12.1",
     "@babel/preset-env": "^7.12.11",
     "@babel/preset-react": "^7.12.10",
+    "@hapi/joi": "^17.1.1",
     "axios": "^0.21.1",
     "babel-loader": "^8.2.2",
     "bcrypt": "^5.0.0",
