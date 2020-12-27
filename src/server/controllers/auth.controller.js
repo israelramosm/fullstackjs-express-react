@@ -1,5 +1,6 @@
 import User, { schema } from "../models/userModel";
 import Joi from "@hapi/joi";
+import jwt from "jsonwebtoken";
 
 const joiSchema = Joi.object({
   email: Joi.string()
@@ -24,7 +25,10 @@ export const postLogin = async (req, res) => {
   if (error) return res.status(400).json({ error: error.details[0].message });
 
   const user = await User.findOne({ email: req.body.email });
-  if(!user) return res.status(400).json({ error: "We did't find the email in our database" });
+  if (!user)
+    return res
+      .status(400)
+      .json({ error: "We did't find the email in our database" });
 
   // test a matching password
   user.comparePassword(req.body.password, function (error, isMatch) {
@@ -32,7 +36,18 @@ export const postLogin = async (req, res) => {
 
     if (!isMatch) return res.status(400).json({ error: "Incorrect Password" });
 
-    return res.status(200).json({ message: "Sucess! You are login.", user });
+    const token = jwt.sign(
+      {
+        id: user._id,
+        email: user.email,
+      },
+      process.env.TOKEN_SECRET
+    );
+
+    return res
+      .status(200)
+      .header("auth-token", token)
+      .json({ message: "Success! You are login.", token });
   });
 };
 
@@ -47,10 +62,10 @@ export const postSignup = async (req, res) => {
   if (error) return res.status(400).json({ error: error.details[0].message });
 
   const userExist = await User.findOne({ email: req.body.email });
-  if (userExist)
-    return res.status(400).json({ error: "Email already exists" });
+  if (userExist) return res.status(400).json({ error: "Email already exists" });
 
   let newUser = new User(req.body);
+  console.log(newUser);
   newUser.save((err, user) => {
     if (err) return res.status(400).send(err);
 

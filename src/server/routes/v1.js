@@ -1,3 +1,4 @@
+import verifyToken from '../controllers/middleware/jwt_service'
 import * as testC from '../controllers/test.controller'
 
 /**
@@ -7,7 +8,7 @@ import * as testC from '../controllers/test.controller'
  * @param {*} rV1 
  */
 const v1 = (app, url, rV1) => {
-    app.use(url, rV1)
+    app.use(url, verifyToken, rV1)
   
     app.get(url, (req, res) => {
       let data = {
