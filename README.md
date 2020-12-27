@@ -109,3 +109,5 @@ I'am using [standardx](https://github.com/standard/standardx) based on the [stan
 ## References
 [Creating a Node Express-Webpack App with Dev and Prod Builds](https://medium.com/@binyamin/creating-a-node-express-webpack-app-with-dev-and-prod-builds-a4962ce51334)
 
+[To Handle Authentication With Node JS, Express, Mongo, JWT](https://codeburst.io/to-handle-authentication-with-node-js-express-mongo-jwt-7e55f5818181)
+

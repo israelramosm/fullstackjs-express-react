@@ -23,18 +23,16 @@ export const postLogin = async (req, res) => {
   const { error } = joiSchema.validate(req.body);
   if (error) return res.status(400).json({ error: error.details[0].message });
 
-  await User.findOne({ email: req.body.email }, (error, user) => {
-    if (error) return res.status(400).json({ error});;
+  const user = await User.findOne({ email: req.body.email });
+  if(!user) return res.status(400).json({ error: "We did't find the email in our database" });
 
-    // test a matching password
-    user.comparePassword(req.body.password, function (error, isMatch) {
-      if (error) return res.status(400).json({ error});
+  // test a matching password
+  user.comparePassword(req.body.password, function (error, isMatch) {
+    if (error) console.log(error);
 
-      if (!isMatch)
-        return res.status(400).json({ error: "Incorrect Password"});
+    if (!isMatch) return res.status(400).json({ error: "Incorrect Password" });
 
-      return res.status(200).json({ message: "Sucess! You are login.", user })
-    });
+    return res.status(200).json({ message: "Sucess! You are login.", user });
   });
 };
 
@@ -48,8 +46,8 @@ export const postSignup = async (req, res) => {
   const { error } = joiSchema.validate(req.body);
   if (error) return res.status(400).json({ error: error.details[0].message });
 
-  const isEmailExist = await User.findOne({ email: req.body.email });
-  if (isEmailExist)
+  const userExist = await User.findOne({ email: req.body.email });
+  if (userExist)
     return res.status(400).json({ error: "Email already exists" });
 
   let newUser = new User(req.body);
