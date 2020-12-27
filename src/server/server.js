@@ -51,4 +51,4 @@ connect(DB_URI, { useNewUrlParser: true })
       console.log(SERVER, `Listen on ${PORT}`);
     });
   })
-  .catch((error) => console.error(`*** DB Connection Error: ${error}`));
+  .catch((error) => console.error(SERVER, `*** DB Connection Error: ${error} ***`));
