@@ -19,12 +19,23 @@ const joiSchema = Joi.object({
  * @param {*} req
  * @param {*} res
  */
-export const postLogin = (req, res) => {
-  console.log(req.body);
-  let data = {
-    message: "Sucess! You are login.",
-  };
-  res.status(200).send(data);
+export const postLogin = async (req, res) => {
+  const { error } = joiSchema.validate(req.body);
+  if (error) return res.status(400).json({ error: error.details[0].message });
+
+  await User.findOne({ email: req.body.email }, (error, user) => {
+    if (error) return res.status(400).json({ error});;
+
+    // test a matching password
+    user.comparePassword(req.body.password, function (error, isMatch) {
+      if (error) return res.status(400).json({ error});
+
+      if (!isMatch)
+        return res.status(400).json({ error: "Incorrect Password"});
+
+      return res.status(200).json({ message: "Sucess! You are login.", user })
+    });
+  });
 };
 
 /**
@@ -37,15 +48,15 @@ export const postSignup = async (req, res) => {
   const { error } = joiSchema.validate(req.body);
   if (error) return res.status(400).json({ error: error.details[0].message });
 
-  const isEMailExist = await User.findOne({ email: req.body.email });
-  if (isEMailExist)
+  const isEmailExist = await User.findOne({ email: req.body.email });
+  if (isEmailExist)
     return res.status(400).json({ error: "Email already exists" });
 
   let newUser = new User(req.body);
   newUser.save((err, user) => {
-    if (err) res.status(500).send(err);
+    if (err) return res.status(400).send(err);
 
-    res.status(200).send(user);
+    return res.status(200).send(user);
   });
 };
 
@@ -56,8 +67,7 @@ export const postSignup = async (req, res) => {
  * @param {*} res
  */
 export const getLogout = (req, res) => {
-  let data = {
+  res.status(200).json({
     message: "Sucess! You are logout.",
-  };
-  res.status(200).send(data);
+  });
 };

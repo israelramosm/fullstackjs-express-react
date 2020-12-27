@@ -1,7 +1,7 @@
 ### POST api/login
 curl -X POST http://localhost:8080/api/login 
 -H 'Content-Type: application/json' 
--d '{ "email": "example@domain.com", "password": "password" }'
+-d '{ "email": "example2@domain.com", "password": "password" }'
 
 ### POST api/signup
 curl -X POST http://localhost:8080/api/signup 
