@@ -1,7 +1,9 @@
-import jwt, { verify } from "jsonwebtoken";
+import jwt from "jsonwebtoken";
 
 const verifyToken = (req, resp, next) => {
-  const token = req.header("auth-token");
+  const token = req.header("Authorization");
+  console.log(JSON.stringify(req.headers))
+  console.log(token);
   if (!token) return resp.status(401).json({ error: "Access denied" });
 
   try {

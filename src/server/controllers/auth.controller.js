@@ -46,7 +46,7 @@ export const postLogin = async (req, res) => {
 
     return res
       .status(200)
-      .header("auth-token", token)
+      .header("Authorization", token)
       .json({ message: "Success! You are login.", token });
   });
 };
