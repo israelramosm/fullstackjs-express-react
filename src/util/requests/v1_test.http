@@ -1,8 +1,8 @@
 ### GET base
-curl -X GET http://localhost:8080/api/v1 -H 'Content-Type: application/json' -H 'Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmZTdhYTIzODlmNDA3Mzg5MDEwMTcyMyIsImVtYWlsIjoiZXhhbXBsZTFAZG9tYWluLmNvbSIsImlhdCI6MTYwOTA0NjM5Nn0.FgbHcSAF2L-xp8vZT1RkuLRzWy1LNepJOa27n5eeq18'
+curl -X GET http://localhost:8080/api/v1 -H 'Content-Type: application/json' -H 'Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmZTdhYTIzODlmNDA3Mzg5MDEwMTcyMyIsImVtYWlsIjoiZXhhbXBsZTFAZG9tYWluLmNvbSIsImlhdCI6MTYxMjUwNDY4NH0.3UszawO85vcZVN3Z7tDggtg-82XlEqZiJkAQTkoV82c'
 
 ### GET api/v1/tests
-curl -X GET http://localhost:8080/api/v1/tests -H 'Content-Type: application/json' -H 'Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmZTdhYTIzODlmNDA3Mzg5MDEwMTcyMyIsImVtYWlsIjoiZXhhbXBsZTFAZG9tYWluLmNvbSIsImlhdCI6MTYwOTA0NjM5Nn0.FgbHcSAF2L-xp8vZT1RkuLRzWy1LNepJOa27n5eeq18'
+curl -X GET http://localhost:8080/api/v1/tests -H 'Content-Type: application/json' -H 'Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmZTdhYTIzODlmNDA3Mzg5MDEwMTcyMyIsImVtYWlsIjoiZXhhbXBsZTFAZG9tYWluLmNvbSIsImlhdCI6MTYxMjUwNDY4NH0.UwltEANqFySGgMGw_9OYQWfDHTvX4W5lwfOT_Xb-pLg'
 
 ### POST api/v1/tests
 curl -X POST http://localhost:8080/api/v1/tests/123 -H 'Content-Type: application/json' -H 'Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmZTdhYTIzODlmNDA3Mzg5MDEwMTcyMyIsImVtYWlsIjoiZXhhbXBsZTFAZG9tYWluLmNvbSIsImlhdCI6MTYwOTA0NjM5Nn0.FgbHcSAF2L-xp8vZT1RkuLRzWy1LNepJOa27n5eeq18' -d '{ "name": "test POST", "method": "POST", "description": "sending payload" }'
