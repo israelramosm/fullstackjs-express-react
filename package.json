@@ -17,6 +17,7 @@
     "nodemon": "nodemon --watch dist/server.js --delay 2500ms ./dist/server.js",
     "watch:backEnd": "webpack --watch --mode development --config webpack.server.config.js",
     "watch:frontend": "webpack --watch --mode development --config webpack.dev.config.js",
+    "start:backEnd": "npm-run-all -p db nodemon watch:backEnd",
     "startAll": "npm-run-all -p nodemon watch:backEnd watch:frontend"
   },
   "repository": {

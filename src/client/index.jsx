@@ -1,10 +1,9 @@
 import ReactDOM from "react-dom";
 import React from "react";
 
-import App from "./components/App";
-
 import "./styles/reset.scss"; // importing reset
 import "./styles/index.scss"; // importing global styles
+import App from "./App";
 
 // Needed for Hot Module Replacement
 if (typeof module.hot !== "undefined") {
