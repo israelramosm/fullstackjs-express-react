@@ -8,11 +8,6 @@ const App = () => {
   const username = "username"
   return (
     <Switch>
-      {/* 
-        Landing Pagge
-        <Route exact path="/">
-          <Main />
-        </Route> */}
       <Route path="/login" component={Login} />
       <Route path="/landing-page" component={LandingPage} />
       <Route path={`/${username}`} component={Main} />
