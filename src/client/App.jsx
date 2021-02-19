@@ -1,7 +1,23 @@
 import React, { Component } from "react";
+import { Route, Switch } from "react-router-dom";
+import Login from "./content/Login";
+import Main from "./content/Main";
+import LandingPage from "./content/LandingPage";
 
-export default class App extends Component {
-  render() {
-    return <div>Hello World!</div>;
-  }
-}
+const App = () => {
+  const username = "username"
+  return (
+    <Switch>
+      {/* 
+        Landing Pagge
+        <Route exact path="/">
+          <Main />
+        </Route> */}
+      <Route path="/login" component={Login} />
+      <Route path="/landing-page" component={LandingPage} />
+      <Route path={`/${username}`} component={Main} />
+    </Switch>
+  );
+};
+
+export default App;

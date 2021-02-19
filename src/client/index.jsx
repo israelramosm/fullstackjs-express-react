@@ -1,5 +1,6 @@
 import ReactDOM from "react-dom";
 import React from "react";
+import { HashRouter as Router } from "react-router-dom";
 
 import "./styles/reset.scss"; // importing reset
 import "./styles/index.scss"; // importing global styles
@@ -11,4 +12,9 @@ if (typeof module.hot !== "undefined") {
 }
 
 // Here should start the React APP
-ReactDOM.render(<App />, document.getElementById("root"));
+ReactDOM.render(
+  <Router>
+    <App />
+  </Router>,
+  document.getElementById("root")
+);
