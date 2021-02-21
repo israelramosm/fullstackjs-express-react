@@ -12,11 +12,13 @@
   "bugs": {
     "url": "https://github.com/Israel-94/express-template/issues"
   },
-  "homepage": "https://github.com/Israel-94/express-template#readme",
+  "homepage": "/",
   "dependencies": {
     "@babel/cli": "^7.12.17",
     "@babel/core": "^7.12.17",
     "@babel/preset-env": "^7.12.17",
+    "@carbon/grid": "^10.20.0",
+    "@carbon/icons-react": "10.22.0",
     "@hapi/joi": "^17.1.1",
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
@@ -24,6 +26,9 @@
     "axios": "^0.21.1",
     "bcrypt": "^5.0.0",
     "body-parser": "^1.19.0",
+    "carbon-components": "10.25.0",
+    "carbon-components-react": "7.25.0",
+    "carbon-icons": "7.0.7",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "jsonwebtoken": "^8.5.1",
@@ -90,7 +95,5 @@
       ]
     ]
   },
-  "devDependencies": {
-    "babel-watch": "^7.4.0"
-  }
+  "devDependencies": {}
 }

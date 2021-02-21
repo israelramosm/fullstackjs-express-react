@@ -1,3 +1,4 @@
+import { Button } from "carbon-components-react";
 import React from "react";
 
 const Dashboard = () => (<div>Dashboard</div>);
