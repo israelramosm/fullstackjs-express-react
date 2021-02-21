@@ -48,12 +48,17 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "server": "node ./dist/server.js",
-    "transpile": "babel ./server --out-dir ./dist",
-    "build:backend": "rimraf ./dist && yarn run transpile",
     "db": "mongod --auth --dbpath \"/home/israel/Documents/mongodb/databases\"",
+    "server": "node ./dist/server.js",
+    "build:backend": "npm-run-all clean:backend transpile",
+    "nodemon": "nodemon --watch dist/server.js --delay 2500ms ./dist/server.js",
+    "babel:watch": "babel -w server/server.js -d ./dist",
+    "start:backend": "npm-run-all -p db babel:watch nodemon",
+    "transpile": "babel ./server --out-dir ./dist",
+    "clean:backend": "rimraf ./dist",
     "jest:node": "jest --config ./__tests__/node.config.js --passWithNoTests",
-    "build:project": "yarn build && yarn build:backend && cp -r build dist"
+    "cp:frontend:dist": "cp -r build dist",
+    "build:project": "npm-run-all build build:backend cp:frontend:dist"
   },
   "eslintConfig": {
     "extends": [
@@ -84,5 +89,8 @@
         }
       ]
     ]
+  },
+  "devDependencies": {
+    "babel-watch": "^7.4.0"
   }
 }
