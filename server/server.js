@@ -7,9 +7,8 @@ import dotenv from "dotenv";
 // import mongo from "connect-mongo"
 import { connect } from "mongoose";
 
-import devApp from "./server-dev";
 import apiRoutes from "./routes";
-import { DEBUG, SERVER } from "../util/Constants";
+import { DEBUG, SERVER } from "./util/Constants";
 
 // importing enviroment variables from .env
 dotenv.config();
@@ -19,16 +18,13 @@ const { NODE_ENV, PORT, DB, DB_HOST, DB_NAME, DB_USER, DB_PASS } = process.env;
 const DB_URI = `${DB}${DB_USER}:${DB_PASS}@${DB_HOST}${DB_NAME}`;
 
 const PROD_MODE = NODE_ENV === "production";
-const DIST_DIR = path.join(__dirname, "/public");
+const DIST_DIR = path.join(__dirname, "/build");
 const HTML_FILE = path.join(DIST_DIR, "./index.html");
 const app = express();
 
 /* Configuration */
 // Static Files
 app.use(express.static(DIST_DIR));
-
-// Setting up development configuration
-if (!PROD_MODE) devApp(app);
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));

@@ -2,7 +2,7 @@ import moxios from 'moxios'
 import request from 'supertest'
 
 import initServer from '../../__mocks__/mockapp'
-import base from '../../src/server/routes/base'
+import base from '../../server/routes/base'
 
 const BASE_URL = '/api'
 const URL = `${BASE_URL}/tests`

@@ -1,70 +1,112 @@
-# Getting Started with Create React App
+[![JavaScript Style Guide](https://cdn.rawgit.com/standard/standard/master/badge.svg)](https://github.com/standard/standard)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Express-React Template
+An express react template with tests to learn more about Javascript.
 
-## Available Scripts
+## Run
 
-In the project directory, you can run:
+To run the application first install all the dependencies
 
-### `yarn start`
+```sh
+$ npm install
+```
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+* Start the db, I recommend to check the mongo configuration
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+```sh
+$ npm run db
+```
 
-### `yarn test`
+* For development mode
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```sh
+$ npm run build:dev
+```
 
-### `yarn build`
+* or for production mode
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```sh
+$ npm run build:prod
+$ npm run start
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+To run the test or coverage, the test can be run without mongo installed on the machine
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```sh
+$ npm run tests
+$ npm run coverage
+```
 
-### `yarn eject`
+## Configuration
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+### Jest and Express
+Needs `target` and `node` in `.babelrc` file to run async await functions inside jest tests. And transpile js code to run express app.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```json
+{
+    "presets": [
+        [
+        "@babel/preset-env", {
+            "targets": {
+            "node": "current"
+            }
+        }
+        ]
+    ]
+}
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+### Mongo
+Quick configuration to use mongod with authentication
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+```shell
+$ mongod --dbpath "C:\dbpath"
+```
 
-## Learn More
+In another console
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+```shell
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+$ mongod
+> use admin
+> db.createUser({user: 'username', pwd:'password', roles:[{role:'userAdminAnyDatabase',db: 'admin'}]})
+> use <dbname>
+> db.createUser({user: 'username', pwd:'password', roles:[{role:'readWrite',db: '<dbname>'}]})
+```
 
-### Code Splitting
+Then we can restart the process of mongod using auth
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+```shell
+$ mongod --auth --dbpath "C:\dbpath"
+```
 
-### Analyzing the Bundle Size
+### React
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+Needs custom presets inside the webpack build to detected `jsx` and syntax.
+If it's not configure with this the unglify plugin for the production build in webpack will fail, it won't detect the <App /> syntax.
 
-### Making a Progressive Web App
+```js
+    {
+        // Transpiles ES6-8 into ES5 for React App
+        test: /\.jsx$/,
+        exclude: /node_modules/,
+        use: {
+            loader: "babel-loader",
+            options: {
+                presets: [
+                "@babel/preset-env",
+                "@babel/preset-react"
+                ],
+                plugins: ["@babel/plugin-proposal-class-properties","@babel/plugin-proposal-export-default-from"]
+          }
+        }
+    },
+```
+### esLint
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+I'am using [standardx](https://github.com/standard/standardx) based on the [standard](https://github.com/standard/standard) project
 
-### Advanced Configuration
+## References
+[Creating a Node Express-Webpack App with Dev and Prod Builds](https://medium.com/@binyamin/creating-a-node-express-webpack-app-with-dev-and-prod-builds-a4962ce51334)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+[To Handle Authentication With Node JS, Express, Mongo, JWT](https://codeburst.io/to-handle-authentication-with-node-js-express-mongo-jwt-7e55f5818181)

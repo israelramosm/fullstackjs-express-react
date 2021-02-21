@@ -4,7 +4,7 @@ import { MongoMemoryServer } from 'mongodb-memory-server';
 import mongoose from 'mongoose'
 
 import initServer from '../../__mocks__/mockapp'
-import base from '../../src/server/routes/base'
+import base from '../../server/routes/base'
 
 const BASE_URL = '/api'
 const opts = { useCreateIndex: true, useNewUrlParser: true } 
