@@ -17,9 +17,16 @@ $ yarn run db
 
 * For development mode
 
+Backend
+
 ```sh
+$ yarn run build:backend
 $ yarn run start:backend
-or
+```
+
+Frontend
+
+```sh
 $ yarn run start
 ```
 
