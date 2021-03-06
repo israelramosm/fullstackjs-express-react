@@ -64,7 +64,7 @@
     "jest:node": "jest --config ./__tests__/node.config.js --passWithNoTests",
     "cp:frontend:dist": "cp -r build dist",
     "build:project": "npm-run-all build build:backend cp:frontend:dist",
-    "standard": "standard"
+    "eslint": "eslint --ext .js src server"
   },
   "eslintConfig": {
     "extends": [
@@ -97,10 +97,10 @@
     ]
   },
   "devDependencies": {
-    "eslint-config-standard": "^16.0.2",
-    "eslint-config-standard-jsx": "^10.0.0",
-    "eslint-plugin-standard": "^5.0.0",
-    "prettier-standard": "^16.4.1",
-    "standard": "^16.0.3"
+    "babel-eslint": "^10.1.0",
+    "eslint-config-airbnb": "^18.2.1",
+    "eslint-config-prettier": "^8.1.0",
+    "eslint-plugin-prettier": "^3.3.1",
+    "prettier": "^2.2.1"
   }
 }
