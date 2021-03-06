@@ -63,7 +63,8 @@
     "clean:backend": "rimraf ./dist",
     "jest:node": "jest --config ./__tests__/node.config.js --passWithNoTests",
     "cp:frontend:dist": "cp -r build dist",
-    "build:project": "npm-run-all build build:backend cp:frontend:dist"
+    "build:project": "npm-run-all build build:backend cp:frontend:dist",
+    "standard": "standard"
   },
   "eslintConfig": {
     "extends": [
@@ -95,5 +96,11 @@
       ]
     ]
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "eslint-config-standard": "^16.0.2",
+    "eslint-config-standard-jsx": "^10.0.0",
+    "eslint-plugin-standard": "^5.0.0",
+    "prettier-standard": "^16.4.1",
+    "standard": "^16.0.3"
+  }
 }
