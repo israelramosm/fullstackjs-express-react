@@ -1,3 +1,3 @@
-export const DEBUG = "[DEBUG]::";
+export const DEBUG = '[DEBUG]::'
 
-export const SERVER = "[SERVER]::";
+export const SERVER = '[SERVER]::'

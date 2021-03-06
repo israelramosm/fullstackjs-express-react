@@ -19,42 +19,42 @@ describe('API v1 tests', () => {
     moxios.uninstall()
   })
 
-  test('GET /api/v1', async(done) => {
+  test('GET /api/v1', async (done) => {
     const res = await request(server).get(BASE_URL)
 
     expect(res.body.message).toEqual('Hello /api/v1!')
     done()
   })
 
-  test('GET /api/v1/tests', async(done) => {
+  test('GET /api/v1/tests', async (done) => {
     const res = await request(server).get(URL)
 
     expect(res.body.message).toEqual('GET /api/tests')
     done()
   })
 
-  test('GET /api/v1/tests/:testId', async(done) => {
+  test('GET /api/v1/tests/:testId', async (done) => {
     const res = await request(server).get(`${URL}/123`)
 
     expect(res.body.message).toEqual('GET /api/test')
     done()
   })
 
-  test('POST /api/v1/tests:testId', async(done) => {
+  test('POST /api/v1/tests:testId', async (done) => {
     const res = await request(server).post(`${URL}/123`)
 
     expect(res.body.message).toEqual('POST /api/test')
     done()
   })
 
-  test('PUT /api/v1/tests:testId', async(done) => {
+  test('PUT /api/v1/tests:testId', async (done) => {
     const res = await request(server).put(`${URL}/123`)
 
     expect(res.body.message).toEqual('PUT /api/test')
     done()
   })
 
-  test('PUT /api/v1/tests:testId', async(done) => {
+  test('PUT /api/v1/tests:testId', async (done) => {
     const res = await request(server).delete(`${URL}/123`)
 
     expect(res.body.message).toEqual('DELETE /api/test')
