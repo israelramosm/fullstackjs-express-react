@@ -1,12 +1,24 @@
-import React from 'react'
-import { Route } from 'react-router-dom'
-import Dashboard from '../Dashboard/Dashboard'
+import React from 'react';
+import { Route } from 'react-router-dom';
+import PropTypes from 'prop-types';
+
+import Dashboard from '../Dashboard/Dashboard';
 
 const Main = ({ match }) => (
   <main>
     <div>Main</div>
-    <Route path={`${match.url}/dashboard`}><Dashboard /></Route>
+    <Route path={`${match.url}/dashboard`}>
+      <Dashboard />
+    </Route>
   </main>
-)
+);
 
-export default Main
+Main.propTypes = {
+  match: PropTypes.shape({ url: PropTypes.string }),
+};
+
+Main.defaultProps = {
+  match: {},
+};
+
+export default Main;
