@@ -1,8 +1,13 @@
 export const getTests = (req, res) => {
-  const data = {
-    message: 'GET /api/tests',
-  };
-  res.status(200).send(data);
+  const data = [
+    {
+      message: 'GET /api/tests',
+    },
+    {
+      message: 'GET /api/tests/2',
+    },
+  ];
+  return res.status(200).send(data);
 };
 
 export const getTest = (req, res) => {
