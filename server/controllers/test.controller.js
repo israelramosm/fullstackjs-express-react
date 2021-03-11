@@ -4,7 +4,7 @@ export const getTests = (req, res) => {
       message: 'GET /api/tests',
     },
     {
-      message: 'GET /api/tests/2',
+      message: 'GET /api/tests 2',
     },
   ];
   return res.status(200).send(data);
