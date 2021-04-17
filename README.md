@@ -1,5 +1,3 @@
-[![JavaScript Style Guide](https://cdn.rawgit.com/standard/standard/master/badge.svg)](https://github.com/standard/standard)
-
 # Express-React Template
 An express react template with tests to learn more about Javascript.
 
@@ -8,53 +6,43 @@ An express react template with tests to learn more about Javascript.
 To run the application first install all the dependencies
 
 ```sh
-$ npm install
+$ yarn install
 ```
 
 * Start the db, I recommend to check the mongo configuration
 
 ```sh
-$ npm run db
+$ yarn run db
 ```
 
 * For development mode
 
+Backend
+
 ```sh
-$ npm run build:dev
+$ yarn run build:backend
+$ yarn run start:backend
+```
+
+Frontend
+
+```sh
+$ yarn run start
 ```
 
 * or for production mode
 
 ```sh
-$ npm run build:prod
-$ npm run start
+$ yarn run build:project
 ```
 
 To run the test or coverage, the test can be run without mongo installed on the machine
 
 ```sh
-$ npm run tests
-$ npm run coverage
+$ yarn run tests
 ```
 
 ## Configuration
-
-### Jest and Express
-Needs `target` and `node` in `.babelrc` file to run async await functions inside jest tests. And transpile js code to run express app.
-
-```json
-{
-    "presets": [
-        [
-        "@babel/preset-env", {
-            "targets": {
-            "node": "current"
-            }
-        }
-        ]
-    ]
-}
-```
 
 ### Mongo
 Quick configuration to use mongod with authentication
@@ -80,32 +68,35 @@ Then we can restart the process of mongod using auth
 $ mongod --auth --dbpath "C:\dbpath"
 ```
 
-### React
+### esLint and Prettier using airbnb standards
 
-Needs custom presets inside the webpack build to detected `jsx` and syntax.
-If it's not configure with this the unglify plugin for the production build in webpack will fail, it won't detect the <App /> syntax.
+From [Integrating Prettier + ESLint + Airbnb Style Guide in VSCode](https://blog.echobind.com/integrating-prettier-eslint-airbnb-style-guide-in-vscode-47f07b5d7d6a)
 
-```js
-    {
-        // Transpiles ES6-8 into ES5 for React App
-        test: /\.jsx$/,
-        exclude: /node_modules/,
-        use: {
-            loader: "babel-loader",
-            options: {
-                presets: [
-                "@babel/preset-env",
-                "@babel/preset-react"
-                ],
-                plugins: ["@babel/plugin-proposal-class-properties","@babel/plugin-proposal-export-default-from"]
-          }
-        }
-    },
+1. Download the ESLint and Prettier extensions for VSCode.
+2. Install the ESLint and Prettier libraries into our project. In your project’s root directory, you will want to run: npm install -D eslint prettier
+3. Install the Airbnb config. If you’re using npm 5+, you can run this shortcut to install the config and all of its dependencies: npx install-peerdeps --dev eslint-config-airbnb
+4. Install eslint-config-prettier (disables formatting for ESLint) and eslint-plugin-prettier (allows ESLint to show formatting errors as we type) npm install -D eslint-config-prettier eslint-plugin-prettier
+5. Create .eslintrc.json file in your project’s root directory:
+
+```json
+{
+  "extends": ["airbnb", "prettier"],
+  "plugins": ["prettier"],
+  "rules": {
+    "prettier/prettier": ["error"]
+  },
+}
 ```
-### esLint
-
-I'am using [standardx](https://github.com/standard/standardx) based on the [standard](https://github.com/standard/standard) project
+6. Create .prettierrc file in your project’s root directory. This will be where you configure your formatting settings. I have added a few of my own preferences below, but I urge you to read more about the Prettier config file
+```json
+{
+  "printWidth": 100,
+  "singleQuote": true
+}
+```
+7. The last step is to make sure Prettier formats on save. Insert "editor.formatOnSave": true into your User Settings in VSCode.
 
 ## References
 [Creating a Node Express-Webpack App with Dev and Prod Builds](https://medium.com/@binyamin/creating-a-node-express-webpack-app-with-dev-and-prod-builds-a4962ce51334)
 
+[To Handle Authentication With Node JS, Express, Mongo, JWT](https://codeburst.io/to-handle-authentication-with-node-js-express-mongo-jwt-7e55f5818181)
