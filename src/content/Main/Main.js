@@ -1,19 +1,16 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { Column, Row } from 'carbon-components-react';
 
 import Dashboard from '../Dashboard/Dashboard';
 
 const Main = ({ match }) => (
-  <Row>
-    <Column>
-      <div>Main</div>
-      <Route path={`${match.url}/dashboard`}>
-        <Dashboard />
-      </Route>
-    </Column>
-  </Row>
+  <div>
+    <div>Main</div>
+    <Route path={`${match.url}/dashboard`}>
+      <Dashboard />
+    </Route>
+  </div>
 );
 
 Main.propTypes = {

@@ -1,10 +1,5 @@
-import { Column, Row } from 'carbon-components-react';
 import React from 'react';
 
-const Dashboard = () => (
-  <Row>
-    <Column>Dashboard</Column>
-  </Row>
-);
+const Dashboard = () => <div>Dashboard</div>;
 
 export default Dashboard;

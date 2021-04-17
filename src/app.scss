@@ -1,26 +1,8 @@
-@import 'carbon-components/scss/globals/scss/styles.scss';
-@import 'carbon-components/scss/globals/scss/vendor/@carbon/type/scss/font-family.scss';
-@import 'carbon-components/scss/globals/scss/vendor/@carbon/layout/scss/breakpoint.scss';
-@import 'carbon-components/scss/globals/scss/typography.scss';
-@import 'carbon-components/scss/globals/scss/vars.scss';
-
 $maxwidth: 900px;
-
-.full-width {
-    padding: 0px;
-}
 
 .max-width {
     max-width: $maxwidth;
     margin: auto;
-}
-
-.bx--row {
-    border: 1px solid blue;
-}
-
-.bx--col {
-    border: 1px solid green;
 }
 
 @media (max-width: $maxwidth) {
