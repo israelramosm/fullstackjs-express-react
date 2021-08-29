@@ -1,12 +1,41 @@
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css");
+
 $maxwidth: 900px;
 
 .max-width {
-    max-width: $maxwidth;
-    margin: auto;
+  max-width: $maxwidth;
+  margin: auto;
 }
 
+.bi-1x {
+  font-size: 1rem;
+}
+
+.bi-2x {
+  font-size: 1.5rem;
+}
+
+.bi-3x {
+  font-size: 2rem;
+}
+
+.bi-4x {
+  font-size: 2.5rem;
+}
+
+.bi-5x {
+    font-size: 3rem;
+  }
+
 @media (max-width: $maxwidth) {
-    .max-width {
-        margin: 0 15px;
+  .max-width {
+    margin: 0 15px;
+  }
+}
+
+.app {
+    &__dropdown-menu-aligment {
+        top: 120% !important;
+        right: -10px !important;
     }
 }
