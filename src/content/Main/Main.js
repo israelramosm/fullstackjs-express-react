@@ -6,7 +6,7 @@ import Dashboard from '../Dashboard/Dashboard';
 
 const Main = ({ match }) => (
   <div>
-    <div>Main</div>
+    <div>Main Dashboard</div>
     <Route path={`${match.url}/dashboard`}>
       <Dashboard />
     </Route>

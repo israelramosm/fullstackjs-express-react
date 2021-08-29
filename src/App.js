@@ -12,9 +12,9 @@ const App = () => {
   return (
     <div className="max-width">
       <Switch>
-        <Route path="/" exact component={LandingPage} />
         <Route path="/login" component={Login} />
         <Route path={`/${username}`} component={Main} />
+        <Route path="/" component={LandingPage} />
       </Switch>
     </div>
   );
