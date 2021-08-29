@@ -8,7 +8,7 @@
     "url": "git+https://github.com/Israel-94/express-template.git"
   },
   "author": "Israel Ramos",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/Israel-94/express-template/issues"
   },
