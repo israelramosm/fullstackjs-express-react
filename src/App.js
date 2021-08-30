@@ -25,7 +25,7 @@ const App = () => {
                 data-bs-toggle="dropdown"
                 aria-expanded="false"
               >
-                <i className="bi bi-person-fill bi-1x" />
+                <i className="bi bi-person-fill bi-2x" />
               </button>
               <ul
                 className="dropdown-menu app__dropdown-menu-aligment"
