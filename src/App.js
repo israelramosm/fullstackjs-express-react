@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Switch } from 'react-router-dom';
+import { Link, Route, Switch } from 'react-router-dom';
 
 import Login from './content/Login';
 import Main from './content/Main';
@@ -32,22 +32,9 @@ const App = () => {
                 aria-labelledby="dropdownMenuButton1"
               >
                 <li>
-                  <a className="dropdown-item" href="/#">
-                    Action
-                  </a>
-                </li>
-                <li>
-                  <a className="dropdown-item" href="/#">
-                    Another action
-                  </a>
-                </li>
-                <li>
-                  <hr className="dropdown-divider" />
-                </li>
-                <li>
-                  <a className="dropdown-item" href="/#">
-                    Something else here
-                  </a>
+                  <Link to="/login" className="dropdown-item">
+                    Login
+                  </Link>
                 </li>
               </ul>
             </div>

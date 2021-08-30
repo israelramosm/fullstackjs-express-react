@@ -1,15 +1,21 @@
 import React from 'react';
-import { Route } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-import Dashboard from '../Dashboard/Dashboard';
+import Dashboard from '../Dashboard';
+import Profile from '../Profile';
 
 const Main = ({ match }) => (
   <div>
-    <div>Main Dashboard</div>
-    <Route path={`${match.url}/dashboard`}>
-      <Dashboard />
-    </Route>
+    <div>Main</div>
+    <Switch>
+      <Route path={`${match.url}/profile`}>
+        <Profile />
+      </Route>
+      <Route path={`${match.url}/`}>
+        <Dashboard />
+      </Route>
+    </Switch>
   </div>
 );
 
