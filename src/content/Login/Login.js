@@ -42,7 +42,7 @@ const Login = () => (
         <div className="form-group d-flex justify-content-center">
           <p>
             You can use
-            <strong> admin - admin </strong>
+            <strong> user@name.com - password </strong>
             to login
           </p>
         </div>

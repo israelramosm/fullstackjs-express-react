@@ -24,6 +24,29 @@ export const postLogin = async (req, res) => {
   const { error } = joiSchema.validate(req.body);
   if (error) return res.status(400).json({ error: error.details[0].message });
 
+  const { email, password } = req.body;
+
+  // WARNING: delete this code for production use
+  if (
+    process.env.NODE_ENV === 'development' &&
+    email === 'user@name.com' &&
+    password === 'password'
+  ) {
+    const token = jwt.sign(
+      {
+        id: 'user',
+        email,
+      },
+      process.env.TOKEN_SECRET,
+      { expiresIn: 60 * 60 } // Expire in 1 hour
+    );
+
+    return res
+      .status(200)
+      .header('Authorization', token)
+      .json({ message: 'Success! You are login.', token });
+  }
+
   const user = await User.findOne({ email: req.body.email });
   if (!user) {
     return res
