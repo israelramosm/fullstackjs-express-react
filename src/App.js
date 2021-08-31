@@ -41,7 +41,7 @@ const App = () => {
           </div>
         </div>
       </nav>
-      <div className="max-width">
+      <div className="container">
         <Switch>
           <Route path="/login" component={Login} />
           <Route path={`/${username}`} component={Main} />
