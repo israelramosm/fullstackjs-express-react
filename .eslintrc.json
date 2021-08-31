@@ -3,9 +3,10 @@
   "extends": ["airbnb"],
   "plugins": ["prettier"],
   "rules": {
-    "prettier/prettier": ["error", {"singleQuote": true, "parser": "flow"}],
+    "prettier/prettier": ["error", { "singleQuote": true, "parser": "flow" }],
     "react/jsx-filename-extension": "off",
     "comma-dangle": "off",
-    "consistent-return": "off"
+    "consistent-return": "off",
+    "indent": ["error", 2]
   }
 }
