@@ -15,6 +15,7 @@ Authorization: <token>
 POST http://localhost:8080/api/v1/tests/123
 Content-Type: application/json
 Authorization: <token>
+
 { "name": "test POST", "method": "POST", "description": "sending payload" }
 
 ### PUT api/v1/tests
@@ -22,6 +23,7 @@ Authorization: <token>
 PUT http://localhost:8080/api/v1/tests/123
 Content-Type: application/json
 Authorization: <token>
+
 { "name": "test POST", "method": "POST", "description": "sending payload" }
 
 ### DELETE api/v1/tests
@@ -29,4 +31,5 @@ Authorization: <token>
 DELETE http://localhost:8080/api/v1/tests/123
 Content-Type: application/json
 Authorization: <token>
+
 { "name": "test POST", "method": "POST", "description": "sending payload" }
