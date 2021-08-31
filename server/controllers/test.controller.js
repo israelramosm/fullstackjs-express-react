@@ -1,3 +1,5 @@
+import jwt from 'jsonwebtoken';
+
 export const getTests = (req, res) => {
   const data = [
     {
@@ -40,4 +42,36 @@ export const deleteTest = (req, res) => {
     body: req.body,
   };
   res.status(200).send(data);
+};
+
+/**
+ * WARNING: delete this code for production use
+ *
+ * Endpoint to generate a token with default user and password
+ * POST /api/login/test
+ * @param {*} req
+ * @param {*} res
+ */
+export const postTestLogin = async (req, res) => {
+  const { email, password } = req.body;
+
+  if (
+    process.env.NODE_ENV === 'development' &&
+    email === 'user@name.com' &&
+    password === 'password'
+  ) {
+    const token = jwt.sign(
+      {
+        id: 'user',
+        email,
+      },
+      process.env.TOKEN_SECRET,
+      { expiresIn: 60 * 60 } // Expire in 1 hour
+    );
+
+    return res
+      .status(200)
+      .header('Authorization', token)
+      .json({ message: 'Success! You are login.', token });
+  }
 };
