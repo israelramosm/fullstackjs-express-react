@@ -40,6 +40,13 @@ const Login = () => (
           </button>
         </div>
         <div className="form-group d-flex justify-content-center">
+          <p>
+            You can use
+            <strong> admin - admin </strong>
+            to login
+          </p>
+        </div>
+        <div className="form-group d-flex justify-content-center">
           <a href="/#" className="login__forget-password">
             Forget Password?
           </a>
