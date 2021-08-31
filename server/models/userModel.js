@@ -6,7 +6,7 @@ export const schema = {
   email: {
     type: String,
     required: true,
-    min: 6,
+    min: 3,
     max: 255,
     unique: true,
   },
