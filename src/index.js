@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { HashRouter as Router } from 'react-router-dom';
-import './reset.scss';
+
 import './index.scss';
 import './app.scss';
 
