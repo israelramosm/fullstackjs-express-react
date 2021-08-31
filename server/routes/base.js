@@ -2,7 +2,7 @@ import * as userC from '../controllers/auth.controller';
 import * as testC from '../controllers/test.controller';
 
 /**
- * setup for /api
+ * base API /api
  * @param {*} app
  * @param {*} url
  * @param {*} rBase
@@ -19,7 +19,6 @@ const base = (app, url, rBase) => {
 
   // test route /api
   rBase.route('/tests').get(testC.getTests);
-  rBase.route('/tests/login').get(testC.postTestLogin);
   rBase
     .route('/tests/:testId')
     .get(testC.getTest)
@@ -28,6 +27,7 @@ const base = (app, url, rBase) => {
     .delete(testC.deleteTest);
 
   // User route /api
+  rBase.route('/test/login').post(testC.postTestLogin);
   rBase.route('/login').post(userC.postLogin);
   rBase.route('/signup').post(userC.postSignup);
   rBase.route('/logout').get(userC.getLogout);

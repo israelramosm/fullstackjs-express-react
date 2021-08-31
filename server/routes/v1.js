@@ -2,7 +2,7 @@ import verifyToken from '../controllers/middleware/jwt_service';
 import * as testC from '../controllers/test.controller';
 
 /**
- * Secure API /api/v1
+ * Secure v1 API /api/v1
  * @param {*} app
  * @param {*} url
  * @param {*} rV1

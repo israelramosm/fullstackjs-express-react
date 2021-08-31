@@ -4,7 +4,13 @@ POST http://localhost:8080/api/login
 Content-Type: application/json
 
 { "email": "example@domain.com", "password": "password" }
-// { "email": "user@name.com", "password": "password" }
+
+### POST api/test/login
+# curl -X POST http://localhost:8080/api/test/login -H 'Content-Type: application/json' -d '{ "email": "example1@domain.com", "password": "password" }'
+POST http://localhost:8080/api/test/login
+Content-Type: application/json
+
+{ "email": "user@name.com", "password": "password" }
 
 ### POST api/signup
 # curl -X POST http://localhost:8080/api/signup -H 'Content-Type: application/json' -d '{ "email": "example3@domain.com", "password": "password" }'

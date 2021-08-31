@@ -74,4 +74,6 @@ export const postTestLogin = async (req, res) => {
       .header('Authorization', token)
       .json({ message: 'Success! You are login.', token });
   }
+
+  return res.status(404).json({ message: 'Error! Nothing to see here' });
 };
