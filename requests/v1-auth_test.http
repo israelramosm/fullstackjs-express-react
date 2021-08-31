@@ -1,35 +1,45 @@
+@hostname = localhost
+@port = 8080
+@host = {{hostname}}:{{port}}
+@contentType = application/json
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6InVzZXIiLCJlbWFpbCI6InVzZXJAbmFtZS5jb20iLCJpYXQiOjE2MzA0NDY0NTQsImV4cCI6MTYzMDQ1MDA1NH0.8o1NGfL63-PKRla9IlGupzfmkP2ULVgO_L0T-vtZaaQ
+@testPOSTBody = { "name": "test POST", "method": "POST", "description": "sending payload" }
+@testPUTBody = { "name": "test PUT", "method": "PUT", "description": "sending payload" }
+@testDELETEBody = { "name": "test DELETE", "method": "DELETE", "description": "sending payload" }
+
+
 ### GET base
-# curl -X GET http://localhost:8080/api/v1 -H 'Content-Type: application/json' -H 'Authorization: <token>'
-GET http://localhost:8080/api/v1
-Content-Type: application/json
-Authorization: <token>
+# curl -X GET http://{{host}}/api/v1 -H 'Content-Type:{{contentType}}' -H 'Authorization: {{token}}'
+GET http://{{host}}/api/v1
+Content-Type:{{contentType}}
+Authorization: {{token}}
 
 ### GET api/v1/tests
-# curl -X GET http://localhost:8080/api/v1/tests -H 'Content-Type: application/json' -H 'Authorization: <token>'
-GET http://localhost:8080/api/v1/tests
-Content-Type: application/json
-Authorization: <token>
+# curl -X GET http://{{host}}/api/v1/tests -H 'Content-Type:{{contentType}}' -H 'Authorization: {{token}}'
+GET http://{{host}}/api/v1/tests
+Content-Type:{{contentType}}
+Authorization: {{token}}
 
 ### POST api/v1/tests
-# curl -X POST http://localhost:8080/api/v1/tests/123 -H 'Content-Type: application/json' -H 'Authorization: <token>' -d '{ "name": "test POST", "method": "POST", "description": "sending payload" }'
-POST http://localhost:8080/api/v1/tests/123
-Content-Type: application/json
-Authorization: <token>
+# curl -X POST http://{{host}}/api/v1/tests/123 -H 'Content-Type:{{contentType}}' -H 'Authorization: {{token}}' -d '{{testPOSTBody}}'
+POST http://{{host}}/api/v1/tests/123
+Content-Type:{{contentType}}
+Authorization: {{token}}
 
-{ "name": "test POST", "method": "POST", "description": "sending payload" }
+{{testPOSTBody}}
 
 ### PUT api/v1/tests
-# curl -X PUT http://localhost:8080/api/v1/tests/123 -H 'Content-Type: application/json' -H 'Authorization: <token>' -d '{ "name": "test POST", "method": "POST", "description": "sending payload" }'
-PUT http://localhost:8080/api/v1/tests/123
-Content-Type: application/json
-Authorization: <token>
+# curl -X PUT http://{{host}}/api/v1/tests/123 -H 'Content-Type:{{contentType}}' -H 'Authorization: {{token}}' -d '{{testPUTBody}}'
+PUT http://{{host}}/api/v1/tests/123
+Content-Type:{{contentType}}
+Authorization: {{token}}
 
-{ "name": "test POST", "method": "POST", "description": "sending payload" }
+{{testPUTBody}}
 
 ### DELETE api/v1/tests
-# curl -X DELETE http://localhost:8080/api/v1/tests/123 -H 'Content-Type: application/json' -H 'Authorization: <token>' -d '{ "name": "test POST", "method": "POST", "description": "sending payload" }'
-DELETE http://localhost:8080/api/v1/tests/123
-Content-Type: application/json
-Authorization: <token>
+# curl -X DELETE http://{{host}}/api/v1/tests/123 -H 'Content-Type:{{contentType}}' -H 'Authorization: {{token}}' -d '{{testDELETEBody}}'
+DELETE http://{{host}}/api/v1/tests/123
+Content-Type:{{contentType}}
+Authorization: {{token}}
 
-{ "name": "test POST", "method": "POST", "description": "sending payload" }
+{{testDELETEBody}}

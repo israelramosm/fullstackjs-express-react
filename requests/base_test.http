@@ -1,26 +1,35 @@
+@hostname = localhost
+@port = 8080
+@host = {{hostname}}:{{port}}
+@contentType = application/json
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6InVzZXIiLCJlbWFpbCI6InVzZXJAbmFtZS5jb20iLCJpYXQiOjE2MzA0NDY0NTQsImV4cCI6MTYzMDQ1MDA1NH0.8o1NGfL63-PKRla9IlGupzfmkP2ULVgO_L0T-vtZaaQ
+@testPOSTBody = { "name": "test POST", "method": "POST", "description": "sending payload" }
+@testPUTBody = { "name": "test PUT", "method": "PUT", "description": "sending payload" }
+@testDELETEBody = { "name": "test DELETE", "method": "DELETE", "description": "sending payload" }
+
 ### GET base
-GET http://localhost:8080/api
+GET http://{{host}}/api
 
 ### GET api/tests
-GET http://localhost:8080/api/tests
+GET http://{{host}}/api/tests
 
 ### POST api/tests
-# curl -X POST http://localhost:8080/api/tests/123 -H 'Content-Type: application/json' -d '{ "name": "test POST", "method": "POST", "description": "sending payload" }'
-POST http://localhost:8080/api/tests/123
-Content-Type: application/json'
+# curl -X POST http://{{host}}/api/tests/123 -H 'Content-Type: {{contentType}}' -d '{{testPOSTBody}}'
+POST http://{{host}}/api/tests/123
+Content-Type: {{contentType}}'
 
-{ "name": "test POST", "method": "POST", "description": "sending payload" }
+{{testPOSTBody}}
 
 ### PUT api/tests
-# curl -X PUT http://localhost:8080/api/tests/123 -H 'Content-Type: application/json' -d '{ "name": "test", "method": "PUT", "description": "sending payload" }'
-PUT http://localhost:8080/api/tests/123
-Content-Type: application/json'
+# curl -X PUT http://{{host}}/api/tests/123 -H 'Content-Type: {{contentType}}' -d '{{testPUTBody}}'
+PUT http://{{host}}/api/tests/123
+Content-Type: {{contentType}}'
 
-{ "name": "test", "method": "PUT", "description": "sending payload" }
+{{testPUTBody}}
 
 ### DELETE api/tests
-# curl -X DELETE  http://localhost:8080/api/tests/123 -H 'Content-Type: application/json' -d '{ "name": "test", "method": "DELETE", "description": "sending payload" }'
-DELETE  http://localhost:8080/api/tests/123
-Content-Type: application/json'
+# curl -X DELETE  http://{{host}}/api/tests/123 -H 'Content-Type: {{contentType}}' -d '{{testDELETEBody}}'
+DELETE  http://{{host}}/api/tests/123
+Content-Type: {{contentType}}'
 
-{ "name": "test", "method": "DELETE", "description": "sending payload" }
+{{testDELETEBody}}

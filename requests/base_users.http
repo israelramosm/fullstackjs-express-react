@@ -1,23 +1,28 @@
+@hostname = localhost
+@port = 8080
+@host = {{hostname}}:{{port}}
+@contentType = application/json
+
 ### POST api/login
-# curl -X POST http://localhost:8080/api/login -H 'Content-Type: application/json' -d '{ "email": "example1@domain.com", "password": "password" }'
-POST http://localhost:8080/api/login
-Content-Type: application/json
+# curl -X POST {{host}}/api/login -H 'Content-Type: {{contentType}}' -d '{ "email": "example1@domain.com", "password": "password" }'
+POST {{host}}/api/login
+Content-Type: {{contentType}}
 
 { "email": "example@domain.com", "password": "password" }
 
 ### POST api/test/login
-# curl -X POST http://localhost:8080/api/test/login -H 'Content-Type: application/json' -d '{ "email": "example1@domain.com", "password": "password" }'
-POST http://localhost:8080/api/test/login
-Content-Type: application/json
+# curl -X POST {{host}}/api/test/login -H 'Content-Type: {{contentType}}' -d '{ "email": "example1@domain.com", "password": "password" }'
+POST {{host}}/api/test/login
+Content-Type: {{contentType}}
 
 { "email": "user@name.com", "password": "password" }
 
 ### POST api/signup
-# curl -X POST http://localhost:8080/api/signup -H 'Content-Type: application/json' -d '{ "email": "example3@domain.com", "password": "password" }'
-POST http://localhost:8080/api/signup
-Content-Type: application/json
+# curl -X POST {{host}}/api/signup -H 'Content-Type: {{contentType}}' -d '{ "email": "example3@domain.com", "password": "password" }'
+POST {{host}}/api/signup
+Content-Type: {{contentType}}
 
 { "email": "example@domain.com", "password": "password" }
 
 ### GET api/logout
-GET http://localhost:8080/api/logout
+GET {{host}}/api/logout
