@@ -1,0 +1,30 @@
+.login {
+  margin: auto;
+  height: 80vh;
+  justify-content: center;
+  align-items: center;
+
+  &__form {
+    padding: 5%;
+    box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 9px 26px 0 rgba(0, 0, 0, 0.19);
+    max-height: 400px;
+
+    h2 {
+      text-align: center;
+      color: #333;
+    }
+  }
+
+  &__button {
+    width: 50%;
+    border-radius: 1rem;
+    padding: 1.5%;
+    border: none;
+    font-weight: 600;
+  }
+
+  &__forget-password {
+    font-weight: 600;
+    text-decoration: none;
+  }
+}
