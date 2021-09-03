@@ -4,25 +4,25 @@
 @contentType = application/json
 
 ### POST api/login
-# curl -X POST {{host}}/api/login -H 'Content-Type: {{contentType}}' -d '{ "email": "example1@domain.com", "password": "password" }'
-POST {{host}}/api/login
+# curl -X POST http://{{host}}/api/login -H 'Content-Type: {{contentType}}' -d '{ "email": "example1@domain.com", "password": "password" }'
+POST http://{{host}}/api/login
 Content-Type: {{contentType}}
 
 { "email": "example@domain.com", "password": "password" }
 
 ### POST api/test/login
-# curl -X POST {{host}}/api/test/login -H 'Content-Type: {{contentType}}' -d '{ "email": "example1@domain.com", "password": "password" }'
-POST {{host}}/api/test/login
+# curl -X POST http://{{host}}/api/test/login -H 'Content-Type: {{contentType}}' -d '{ "email": "example1@domain.com", "password": "password" }'
+POST http://{{host}}/api/test/login
 Content-Type: {{contentType}}
 
 { "email": "user@name.com", "password": "password" }
 
 ### POST api/signup
-# curl -X POST {{host}}/api/signup -H 'Content-Type: {{contentType}}' -d '{ "email": "example3@domain.com", "password": "password" }'
-POST {{host}}/api/signup
+# curl -X POST http://{{host}}/api/signup -H 'Content-Type: {{contentType}}' -d '{ "email": "example3@domain.com", "password": "password" }'
+POST http://{{host}}/api/signup
 Content-Type: {{contentType}}
 
 { "email": "example@domain.com", "password": "password" }
 
 ### GET api/logout
-GET {{host}}/api/logout
+GET http://{{host}}/api/logout
