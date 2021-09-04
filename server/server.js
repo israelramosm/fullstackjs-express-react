@@ -1,6 +1,5 @@
 import express from 'express';
 import path from 'path';
-import bodyParser from 'body-parser';
 import dotenv from 'dotenv';
 // TODO: store session on mongo
 // import session from "express-session"
@@ -25,8 +24,8 @@ const app = express();
 // Static Files
 app.use(express.static(DIST_DIR));
 
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
 
 /* API */
 apiRoutes(app);
