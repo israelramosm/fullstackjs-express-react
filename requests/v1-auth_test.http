@@ -6,6 +6,7 @@
 @testPUTBody = { "name": "test PUT", "method": "PUT", "description": "sending payload" }
 @testDELETEBody = { "name": "test DELETE", "method": "DELETE", "description": "sending payload" }
 
+## Auth Routes
 
 ### GET base
 # curl -X GET http://{{host}}/api/v1 -H 'Content-Type:{{contentType}}'
