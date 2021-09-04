@@ -10,6 +10,9 @@
 GET http://{{host}}/api
 
 ### GET api/tests
+GET http://{{host}}/api/test
+
+### GET api/tests
 GET http://{{host}}/api/tests
 
 ### POST api/tests

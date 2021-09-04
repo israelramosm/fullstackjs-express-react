@@ -16,7 +16,7 @@ export const getTest = (req, res) => {
   const data = {
     message: 'GET /api/test',
   };
-  res.status(200).send(data);
+  return res.status(200).send(data);
 };
 
 export const postTest = (req, res) => {
@@ -25,7 +25,7 @@ export const postTest = (req, res) => {
     body: req.body,
   };
 
-  res.status(200).send(data);
+  return res.status(200).send(data);
 };
 
 export const putTest = (req, res) => {
@@ -33,7 +33,7 @@ export const putTest = (req, res) => {
     message: 'PUT /api/test',
     body: req.body,
   };
-  res.status(200).send(data);
+  return res.status(200).send(data);
 };
 
 export const deleteTest = (req, res) => {
@@ -41,7 +41,7 @@ export const deleteTest = (req, res) => {
     message: 'DELETE /api/test',
     body: req.body,
   };
-  res.status(200).send(data);
+  return res.status(200).send(data);
 };
 
 /**

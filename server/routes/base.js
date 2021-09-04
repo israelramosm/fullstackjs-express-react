@@ -18,6 +18,7 @@ const base = (app, url, rBase) => {
   });
 
   // test route /api
+  rBase.route('/test').get(testC.getTest);
   rBase.route('/tests').get(testC.getTests);
   rBase
     .route('/tests/:testId')
