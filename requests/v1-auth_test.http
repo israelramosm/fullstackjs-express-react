@@ -2,7 +2,7 @@
 @port = 8080
 @host = {{hostname}}:{{port}}
 @contentType = application/json
-@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6InVzZXIiLCJlbWFpbCI6InVzZXJAbmFtZS5jb20iLCJpYXQiOjE2MzA0NDY0NTQsImV4cCI6MTYzMDQ1MDA1NH0.8o1NGfL63-PKRla9IlGupzfmkP2ULVgO_L0T-vtZaaQ
+@token = <token>
 @testPOSTBody = { "name": "test POST", "method": "POST", "description": "sending payload" }
 @testPUTBody = { "name": "test PUT", "method": "PUT", "description": "sending payload" }
 @testDELETEBody = { "name": "test DELETE", "method": "DELETE", "description": "sending payload" }
