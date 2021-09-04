@@ -39,19 +39,32 @@ export const postLogin = async (req, res) => {
 
     if (!isMatch) return res.status(400).json({ err: 'Incorrect Password' });
 
-    const token = jwt.sign(
-      {
-        id: user.id,
-        email: user.email,
-      },
-      process.env.TOKEN_SECRET,
-      { expiresIn: 60 * 60 } // Expire in 1 hour
-    );
+    const payload = {
+      id: user.id,
+      email: user.email,
+    };
 
-    return res
-      .status(200)
-      .header('Authorization', token)
-      .json({ message: 'Success! You are login.', token });
+    // create the refresh token with the longer lifespan
+    const refreshToken = jwt.sign(payload, process.env.REFRESH_TOKEN_SECRET, {
+      algorithm: 'HS256',
+      expiresIn: Number(process.env.REFRESH_TOKEN_LIFE),
+    });
+
+    res.cookie('jwt', refreshToken, { secure: false, httpOnly: true });
+
+    const token = jwt.sign(payload, process.env.ACCESS_TOKEN_SECRET, {
+      algorithm: 'HS256',
+      expiresIn: Number(process.env.ACCESS_TOKEN_LIFE),
+    });
+
+    User.findByIdAndUpdate(
+      payload.id,
+      { token },
+      () =>
+        // eslint-disable-next-line implicit-arrow-linebreak
+        res.status(200).json({ message: 'Success! You are login.' })
+      // eslint-disable-next-line function-paren-newline
+    );
   });
 };
 
@@ -83,6 +96,7 @@ export const postSignup = async (req, res) => {
  * @param {*} res
  */
 export const getLogout = (req, res) => {
+  res.clearCookie('jwt');
   res.status(200).json({
     message: 'Sucess! You are logout.',
   });

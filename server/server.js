@@ -5,6 +5,7 @@ import dotenv from 'dotenv';
 // import session from "express-session"
 // import mongo from "connect-mongo"
 import { connect } from 'mongoose';
+import cookieParser from 'cookie-parser';
 
 import apiRoutes from './routes';
 import { SERVER } from './util/Constants';
@@ -26,6 +27,7 @@ app.use(express.static(DIST_DIR));
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+app.use(cookieParser());
 
 /* API */
 apiRoutes(app);

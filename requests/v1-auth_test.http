@@ -2,44 +2,38 @@
 @port = 8080
 @host = {{hostname}}:{{port}}
 @contentType = application/json
-@token = <token>
 @testPOSTBody = { "name": "test POST", "method": "POST", "description": "sending payload" }
 @testPUTBody = { "name": "test PUT", "method": "PUT", "description": "sending payload" }
 @testDELETEBody = { "name": "test DELETE", "method": "DELETE", "description": "sending payload" }
 
 
 ### GET base
-# curl -X GET http://{{host}}/api/v1 -H 'Content-Type:{{contentType}}' -H 'Authorization: {{token}}'
-GET http://{{host}}/api/v1
+# curl -X GET http://{{host}}/api/v1 -H 'Content-Type:{{contentType}}'
+GET http://{{host}}/api/v1 HTTP/1.1
 Content-Type:{{contentType}}
-Authorization: {{token}}
 
 ### GET api/v1/tests
-# curl -X GET http://{{host}}/api/v1/tests -H 'Content-Type:{{contentType}}' -H 'Authorization: {{token}}'
+# curl -X GET http://{{host}}/api/v1/tests -H 'Content-Type:{{contentType}}'
 GET http://{{host}}/api/v1/tests
 Content-Type:{{contentType}}
-Authorization: {{token}}
 
 ### POST api/v1/tests
-# curl -X POST http://{{host}}/api/v1/tests/123 -H 'Content-Type:{{contentType}}' -H 'Authorization: {{token}}' -d '{{testPOSTBody}}'
+# curl -X POST http://{{host}}/api/v1/tests/123 -H 'Content-Type:{{contentType}}' -d '{{testPOSTBody}}'
 POST http://{{host}}/api/v1/tests/123
 Content-Type:{{contentType}}
-Authorization: {{token}}
 
 {{testPOSTBody}}
 
 ### PUT api/v1/tests
-# curl -X PUT http://{{host}}/api/v1/tests/123 -H 'Content-Type:{{contentType}}' -H 'Authorization: {{token}}' -d '{{testPUTBody}}'
+# curl -X PUT http://{{host}}/api/v1/tests/123 -H 'Content-Type:{{contentType}}' -d '{{testPUTBody}}'
 PUT http://{{host}}/api/v1/tests/123
 Content-Type:{{contentType}}
-Authorization: {{token}}
 
 {{testPUTBody}}
 
 ### DELETE api/v1/tests
-# curl -X DELETE http://{{host}}/api/v1/tests/123 -H 'Content-Type:{{contentType}}' -H 'Authorization: {{token}}' -d '{{testDELETEBody}}'
+# curl -X DELETE http://{{host}}/api/v1/tests/123 -H 'Content-Type:{{contentType}}' -d '{{testDELETEBody}}'
 DELETE http://{{host}}/api/v1/tests/123
 Content-Type:{{contentType}}
-Authorization: {{token}}
 
 {{testDELETEBody}}

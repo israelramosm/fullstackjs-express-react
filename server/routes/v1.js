@@ -1,4 +1,7 @@
-import verifyToken from '../controllers/middleware/jwt_service';
+import {
+  verifyToken,
+  refreshToken,
+} from '../controllers/middleware/jwt_service';
 import * as testC from '../controllers/test.controller';
 
 /**
@@ -9,7 +12,7 @@ import * as testC from '../controllers/test.controller';
  */
 const v1 = (app, url, rV1) => {
   // Secure URLs
-  app.use(url, verifyToken, rV1);
+  app.use(url, refreshToken, verifyToken, rV1);
 
   app.get(url, (req, res) => {
     const data = {
