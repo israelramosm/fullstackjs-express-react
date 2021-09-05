@@ -40,7 +40,7 @@ const Login = () => (
           </button>
         </div>
         <div className="form-group d-flex justify-content-center">
-          <p>
+          <p className="login__test-login">
             You can use
             <strong> user@name.com - password </strong>
             to login

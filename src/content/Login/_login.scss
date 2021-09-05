@@ -5,9 +5,10 @@
   align-items: center;
 
   &__form {
-    padding: 5%;
+    padding: 3% 5%;
     box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 9px 26px 0 rgba(0, 0, 0, 0.19);
     max-height: 400px;
+    max-width: 460px;
 
     h2 {
       text-align: center;
@@ -21,6 +22,10 @@
     padding: 1.5%;
     border: none;
     font-weight: 600;
+  }
+
+  &__test-login {
+    text-align: center;
   }
 
   &__forget-password {
