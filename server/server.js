@@ -18,7 +18,7 @@ const { PORT, DB, DB_HOST, DB_NAME, DB_USER, DB_PASS } = process.env;
 // mongodb://expressjs:password@localhost/expressdb
 const DB_URI = `${DB}${DB_USER}:${DB_PASS}@${DB_HOST}${DB_NAME}`;
 
-const DIST_DIR = path.join(__dirname, '/build');
+const DIST_DIR = path.join(__dirname, '/public');
 const app = express();
 
 /* Configuration */

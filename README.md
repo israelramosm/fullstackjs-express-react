@@ -20,8 +20,8 @@ $ yarn run db
 Backend
 
 ```sh
-$ yarn run build:backend
-$ yarn run start:backend
+$ yarn run build:back
+$ yarn run start:back
 ```
 
 Frontend
@@ -96,7 +96,41 @@ From [Integrating Prettier + ESLint + Airbnb Style Guide in VSCode](https://blog
 ```
 7. The last step is to make sure Prettier formats on save. Insert "editor.formatOnSave": true into your User Settings in VSCode.
 
+## Troubleshoot
+
+### Copy command - cp:front:dist
+
+For linux and windows respectively
+
+**NOTE: Need testing on linux command**
+```
+cp -R build/ dist/public
+xcopy /e build dist\\public\\
+```
+### RegeneratorRuntime is not defined
+
+[Babel 7 Users](https://stackoverflow.com/a/53736090)
+
+Install this
+```
+npm install --save @babel/runtime 
+npm install --save-dev @babel/plugin-transform-runtime
+```
+and add this to babel config
+
+```
+{
+    "presets": ["@babel/preset-env"],
+    "plugins": [
+        ["@babel/transform-runtime"]
+    ]
+}
+```
+
+
 ## References
 [Creating a Node Express-Webpack App with Dev and Prod Builds](https://medium.com/@binyamin/creating-a-node-express-webpack-app-with-dev-and-prod-builds-a4962ce51334)
 
 [To Handle Authentication With Node JS, Express, Mongo, JWT](https://codeburst.io/to-handle-authentication-with-node-js-express-mongo-jwt-7e55f5818181)
+
+[A Practical Guide to JWT Authentication with NodeJS](https://livecodestream.dev/post/a-practical-guide-to-jwt-authentication-with-nodejs/)
