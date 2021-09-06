@@ -7,7 +7,7 @@
     "react/jsx-filename-extension": "off",
     "comma-dangle": "off",
     "consistent-return": "off",
-    "indent": ["error", 2],
+    "indent": ["warn", 2],
     "operator-linebreak": [2, "after", { "overrides": { "?": "after" } }]
   }
 }
