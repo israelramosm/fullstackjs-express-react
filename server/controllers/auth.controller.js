@@ -26,15 +26,15 @@ export const postLogin = async (req, res) => {
 
   const { email, password } = req.body;
 
-  const user = await User.findOne({ email });
-  if (!user) {
+  const userFound = await User.findOne({ email });
+  if (!userFound) {
     return res
       .status(400)
       .json({ error: "We did't find the email in our database" });
   }
 
   // test a matching password
-  user.comparePassword(password, (comparePasswordError, isMatch) => {
+  userFound.comparePassword(password, (comparePasswordError, isMatch) => {
     if (comparePasswordError) {
       return res
         .status(400)
@@ -43,8 +43,8 @@ export const postLogin = async (req, res) => {
     if (!isMatch) return res.status(400).json({ err: 'Incorrect Password' });
 
     const payload = {
-      id: user.id,
-      email: user.email,
+      id: userFound.id,
+      email: userFound.email,
     };
 
     // create the refresh token with the longer lifespan
@@ -58,7 +58,7 @@ export const postLogin = async (req, res) => {
       expiresIn: Number(process.env.ACCESS_TOKEN_LIFE),
     });
 
-    User.findByIdAndUpdate(payload.id, { token }, (updateTokenError) => {
+    User.findByIdAndUpdate(payload.id, { token }, (updateTokenError, user) => {
       if (updateTokenError) {
         res.status(400).json({
           message: 'Error, try again in a while',
@@ -66,7 +66,7 @@ export const postLogin = async (req, res) => {
         });
       }
       res.cookie('jwt', refreshToken, { secure: false, httpOnly: true });
-      return res.status(200).json({ message: 'Success! You are login.' });
+      return res.status(200).json({ email: user.email, profile: user.profile });
     });
   });
 };
@@ -94,7 +94,7 @@ export const postSignup = async (req, res) => {
   newUser.save((err, user) => {
     if (err) return res.status(400).send(err);
 
-    return res.status(200).send(user);
+    return res.status(200).send({ email: user.email, profile: user.profile });
   });
 };
 
