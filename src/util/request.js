@@ -2,15 +2,15 @@ import axios from 'axios';
 
 export const getApiTest = () => ({ url: '/api/tests' });
 
-export const postLoginDev = (data) => ({
-  method: 'POST',
-  url: '/api/login/test',
-  data,
-});
-
 export const postLogin = (data) => ({
   method: 'POST',
   url: '/api/login',
+  data,
+});
+
+export const postSignup = (data) => ({
+  method: 'POST',
+  url: '/api/signup',
   data,
 });
 

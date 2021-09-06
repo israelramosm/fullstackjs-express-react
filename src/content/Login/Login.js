@@ -1,33 +1,36 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useState } from 'react';
-import axiosCall, { postLogin, postLoginDev } from '../../util/request';
+// import { useDispatch } from 'react-redux';
+import axiosCall, { postLogin, postSignup } from '../../util/request';
 
 import './_login.scss';
 
 const Login = () => {
+  // const dispatch = useDispatch();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const defaultEmail = 'user@name.com';
-  const defaultPassword = 'password';
 
   const login = () => {
-    if (email === defaultEmail && password === defaultPassword) {
-      axiosCall(
-        postLoginDev({
-          email,
-          password,
-        })
-      )
-        .then((res) => {
-          console.log('Success', res);
-        })
-        .catch((err) => {
-          console.error(err.response.data.message);
-          setEmail('');
-          setPassword('');
-          setError('Invalid username or password');
-        });
+    if (email === defaultEmail) {
+      axiosCall(postSignup({ email, password })).finally(() => {
+        axiosCall(
+          postLogin({
+            email,
+            password,
+          })
+        )
+          .then((res) => {
+            console.log('Success', res);
+          })
+          .catch((err) => {
+            console.error(err.response.data.message);
+            setEmail('');
+            setPassword('');
+            setError('Invalid username or password');
+          });
+      });
     } else {
       axiosCall(
         postLogin({
@@ -103,7 +106,7 @@ const Login = () => {
               You can use&nbsp;
               <strong>{defaultEmail}</strong>
               &nbsp;/&nbsp;
-              <strong>{defaultPassword}</strong>
+              <strong>password</strong>
               &nbsp;to login
             </p>
           </div>
