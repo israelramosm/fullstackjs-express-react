@@ -34,9 +34,12 @@ export const postLogin = async (req, res) => {
   }
 
   // test a matching password
-  user.comparePassword(password, (err, isMatch) => {
-    if (err) return res.status(400).json({ err });
-
+  user.comparePassword(password, (comparePasswordError, isMatch) => {
+    if (comparePasswordError) {
+      return res
+        .status(400)
+        .json({ message: 'Error, try again in a while', comparePasswordError });
+    }
     if (!isMatch) return res.status(400).json({ err: 'Incorrect Password' });
 
     const payload = {
@@ -50,21 +53,21 @@ export const postLogin = async (req, res) => {
       expiresIn: Number(process.env.REFRESH_TOKEN_LIFE),
     });
 
-    res.cookie('jwt', refreshToken, { secure: false, httpOnly: true });
-
     const token = jwt.sign(payload, process.env.ACCESS_TOKEN_SECRET, {
       algorithm: 'HS256',
       expiresIn: Number(process.env.ACCESS_TOKEN_LIFE),
     });
 
-    User.findByIdAndUpdate(
-      payload.id,
-      { token },
-      () =>
-        // eslint-disable-next-line implicit-arrow-linebreak
-        res.status(200).json({ message: 'Success! You are login.' })
-      // eslint-disable-next-line function-paren-newline
-    );
+    User.findByIdAndUpdate(payload.id, { token }, (updateTokenError) => {
+      if (updateTokenError) {
+        res.status(400).json({
+          message: 'Error, try again in a while',
+          updateTokenError,
+        });
+      }
+      res.cookie('jwt', refreshToken, { secure: false, httpOnly: true });
+      return res.status(200).json({ message: 'Success! You are login.' });
+    });
   });
 };
 
