@@ -12,7 +12,7 @@ Content-Type: {{contentType}}
 
 ### POST api/test/login
 # curl -X POST http://{{host}}/api/test/login -H 'Content-Type: {{contentType}}' -d '{ "email": "example1@domain.com", "password": "password" }'
-POST http://{{host}}/api/test/login
+POST http://{{host}}/api/login/test
 Content-Type: {{contentType}}
 
 { "email": "user@name.com", "password": "password" }

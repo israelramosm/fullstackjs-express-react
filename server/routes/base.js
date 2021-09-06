@@ -28,7 +28,7 @@ const base = (app, url, rBase) => {
     .delete(testC.deleteTest);
 
   // User route /api
-  rBase.route('/test/login').post(testC.postTestLogin);
+  rBase.route('/login/test').post(testC.postTestLogin);
   rBase.route('/login').post(userC.postLogin);
   rBase.route('/signup').post(userC.postSignup);
   rBase.route('/logout').get(userC.getLogout);

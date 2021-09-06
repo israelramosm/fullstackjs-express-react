@@ -1,4 +1,5 @@
 import jwt from 'jsonwebtoken';
+import User from '../models/userModel';
 
 export const getTests = (req, res) => {
   const data = [
@@ -60,20 +61,40 @@ export const postTestLogin = async (req, res) => {
     email === 'user@name.com' &&
     password === 'password'
   ) {
-    const token = jwt.sign(
-      {
-        id: 'user',
-        email,
-      },
-      process.env.TOKEN_SECRET,
-      { expiresIn: 60 * 60 } // Expire in 1 hour
-    );
+    const payload = { email, password };
 
-    return res
-      .status(200)
-      .header('Authorization', token)
-      .json({ message: 'Success! You are login.', token });
+    // create the refresh token with the longer lifespan
+    const refreshToken = jwt.sign(payload, process.env.REFRESH_TOKEN_SECRET, {
+      algorithm: 'HS256',
+      expiresIn: Number(process.env.REFRESH_TOKEN_LIFE),
+    });
+
+    const token = jwt.sign(payload, process.env.ACCESS_TOKEN_SECRET, {
+      algorithm: 'HS256',
+      expiresIn: Number(process.env.ACCESS_TOKEN_LIFE),
+    });
+
+    const userExist = await User.findOne({ email });
+    if (!userExist) {
+      payload.token = token;
+
+      const newUser = new User(payload);
+      newUser.save((err) => {
+        if (err) return res.status(400).send(err);
+      });
+    } else {
+      User.findByIdAndUpdate(payload.id, { token }, (updateTokenError) => {
+        if (updateTokenError) {
+          return res.status(400).json({
+            message: 'Error, try again in a while',
+            updateTokenError,
+          });
+        }
+      });
+    }
+
+    res.cookie('jwt', refreshToken, { secure: false, httpOnly: true });
+    return res.status(200).json({ message: 'Success! You are login.' });
   }
-
   return res.status(404).json({ message: 'Error! Nothing to see here' });
 };
