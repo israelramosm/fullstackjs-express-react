@@ -84,7 +84,14 @@ export const postSignup = async (req, res) => {
   const userExist = await User.findOne({ email: req.body.email });
   if (userExist) return res.status(400).json({ error: 'Email already exists' });
 
-  const newUser = new User(req.body);
+  const payload = req.body;
+  payload.profile = {};
+  payload.profile.username = payload.email.substring(
+    0,
+    payload.email.indexOf('@')
+  );
+  console.log(payload);
+  const newUser = new User(payload);
   newUser.save((err, user) => {
     if (err) return res.status(400).send(err);
 

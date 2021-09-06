@@ -25,6 +25,12 @@ export const schema = {
   google: String,
 
   profile: {
+    username: {
+      type: String,
+      required: false,
+      min: 6,
+      max: 255,
+    },
     name: {
       type: String,
       required: false,

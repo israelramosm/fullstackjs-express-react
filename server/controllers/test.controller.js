@@ -77,6 +77,11 @@ export const postTestLogin = async (req, res) => {
     const userExist = await User.findOne({ email });
     if (!userExist) {
       payload.token = token;
+      payload.profile = {};
+      payload.profile.username = payload.email.substring(
+        0,
+        payload.email.indexOf('@')
+      );
 
       const newUser = new User(payload);
       newUser.save((err) => {
