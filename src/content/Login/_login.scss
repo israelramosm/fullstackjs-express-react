@@ -28,6 +28,12 @@
     text-align: center;
   }
 
+  &__error {
+    font-size: .875em;
+    color: #dc3545;
+    text-align: center;
+  }
+
   &__forget-password {
     font-weight: 600;
     text-decoration: none;
