@@ -90,7 +90,6 @@ export const postSignup = async (req, res) => {
     0,
     payload.email.indexOf('@')
   );
-  console.log(payload);
   const newUser = new User(payload);
   newUser.save((err, user) => {
     if (err) return res.status(400).send(err);
