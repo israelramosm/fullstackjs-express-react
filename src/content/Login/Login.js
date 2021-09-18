@@ -1,16 +1,33 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
+
+import { updateUsername } from '../../state/app/appActions';
 // import { useDispatch } from 'react-redux';
 import axiosCall, { postLogin, postSignup } from '../../util/request';
 
 import './_login.scss';
 
 const Login = () => {
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
+  const history = useHistory();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const defaultEmail = 'user@name.com';
+
+  const handleSucessrLogin = (data) => {
+    dispatch(updateUsername(data.profile.username));
+    history.push(`/${data.profile.username}`);
+  };
+
+  const handleErrorLogin = (err) => {
+    console.error(err.response.data.message);
+    setEmail('');
+    setPassword('');
+    setError('Invalid username or password');
+  };
 
   const login = () => {
     if (email === defaultEmail) {
@@ -21,15 +38,8 @@ const Login = () => {
             password,
           })
         )
-          .then((res) => {
-            console.log('Success', res);
-          })
-          .catch((err) => {
-            console.error(err.response.data.message);
-            setEmail('');
-            setPassword('');
-            setError('Invalid username or password');
-          });
+          .then(({ data }) => handleSucessrLogin(data))
+          .catch((err) => handleErrorLogin(err));
       });
     } else {
       axiosCall(
@@ -38,15 +48,8 @@ const Login = () => {
           password,
         })
       )
-        .then((res) => {
-          console.log('Success', res);
-        })
-        .catch((err) => {
-          console.error(err.response.data.message);
-          setEmail('');
-          setPassword('');
-          setError('Invalid username or password');
-        });
+        .then(({ data }) => handleSucessrLogin(data))
+        .catch((err) => handleErrorLogin(err));
     }
   };
 
@@ -80,7 +83,7 @@ const Login = () => {
             <input
               name="password"
               id="password"
-              type="text"
+              type="password"
               className="form-control"
               placeholder="Your Pasword *"
               aria-label="Your Password"

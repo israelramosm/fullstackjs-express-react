@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link, Route, Switch } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 import Login from './content/Login';
 import Main from './content/Main';
@@ -8,7 +9,7 @@ import LandingPage from './content/LandingPage';
 import './app.scss';
 
 const App = () => {
-  const username = 'username';
+  const { username } = useSelector((state) => state.app);
   return (
     <div className="app">
       <nav className="navbar navbar-dark bg-primary">
