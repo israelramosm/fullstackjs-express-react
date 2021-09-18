@@ -2,12 +2,12 @@ import * as userC from '../controllers/auth.controller';
 import * as testC from '../controllers/test.controller';
 
 /**
- * base API /api
+ * API /api
  * @param {*} app
  * @param {*} url
  * @param {*} rBase
  */
-const base = (app, url, rBase) => {
+const api = (app, url, rBase) => {
   app.use(url, rBase);
 
   app.get(url, (req, res) => {
@@ -33,4 +33,4 @@ const base = (app, url, rBase) => {
   rBase.route('/logout').get(userC.getLogout);
 };
 
-export default base;
+export default api;

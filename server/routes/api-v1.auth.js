@@ -10,7 +10,7 @@ import * as testC from '../controllers/test.controller';
  * @param {*} url
  * @param {*} rV1
  */
-const v1 = (app, url, rV1) => {
+const apiV1 = (app, url, rV1) => {
   // Secure URLs
   app.use(url, refreshToken, verifyToken, rV1);
 
@@ -31,4 +31,4 @@ const v1 = (app, url, rV1) => {
     .delete(testC.deleteTest);
 };
 
-export default v1;
+export default apiV1;
