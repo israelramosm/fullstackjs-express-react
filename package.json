@@ -48,16 +48,16 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "start:back": "npm-run-all -p db nodemon",
-    "build:back": "npm-run-all clean:back transpile",
-    "test:back": "jest --config ./__tests__/node.config.js --passWithNoTests",
-    "start:project": "node ./dist/server.js",
-    "build:project": "npm-run-all build build:back cp:front:dist",
+    "server:build": "babel ./server --out-dir ./dist",
+    "server:start": "node ./dist/server.js",
+    "server:test": "jest --config ./__tests__/node.config.js --passWithNoTests",
+    "project:start": "npm-run-all -p db nodemon",
+    "project:build": "npm-run-all build server:build",
+    "docker:build": "docker build -t fullstack-express-react .",
+    "docker:run": "docker run -dp 5001:5001 fullstack-express-react",
+    "docker:pipeline": "npm-run-all docker:build docker:run",
     "nodemon": "nodemon ./server/server.js --exec babel-node",
     "db": "mongod --auth --dbpath \"C:/Users/arnul/Proyectos/mongodbs\"",
-    "cp:front:dist": "xcopy /e build dist\\public\\",
-    "clean:back": "rimraf ./dist",
-    "transpile": "babel ./server --out-dir ./dist",
     "eslint": "eslint --ext .js src server"
   },
   "browserslist": {
@@ -92,8 +92,7 @@
     "eslint-config-prettier": "^8.1.0",
     "eslint-plugin-prettier": "^3.3.1",
     "npm-run-all": "^4.1.5",
-    "prettier": "^2.2.1",
-    "rimraf": "^3.0.2"
+    "prettier": "^2.2.1"
   },
   "proxy": "http://localhost:8080"
 }
